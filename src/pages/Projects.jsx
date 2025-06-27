@@ -237,7 +237,7 @@ const Projects = () => {
     : null;
 
   return (
-    <div className="h-full flex">
+    <div className="w-full h-full flex">
       {/* Sidebar - Project List */}
       <div
         className={`${
@@ -322,7 +322,7 @@ const Projects = () => {
       <div
         className={`${
           selectedProject ? "flex" : "hidden lg:flex"
-        } flex-1 flex-col`}
+        } w-full flex-1 flex-col`}
       >
         {selectedProject ? (
           <>

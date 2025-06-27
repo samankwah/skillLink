@@ -213,7 +213,7 @@ const Jobs = () => {
                      applications
 
   return (
-    <div className="space-y-6">
+    <div className="w-full space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Jobs & Projects</h1>
@@ -221,7 +221,7 @@ const Jobs = () => {
       </div>
 
       {/* Search and Filters */}
-      <Card>
+      <Card className="w-full">
         <CardContent className="pt-6">
           <div className="flex gap-4 mb-4">
             <div className="flex-1">
@@ -309,9 +309,9 @@ const Jobs = () => {
       </div>
 
       {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="w-full lg:col-span-2 space-y-4">
           {activeTab === 'jobs' && (
             <>
               {searchResults.map((job) => {
@@ -591,7 +591,7 @@ const Jobs = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="w-full space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Recommended for You</CardTitle>

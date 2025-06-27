@@ -84,7 +84,7 @@ const Referrals = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="w-full space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -98,7 +98,7 @@ const Referrals = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Referrals</CardTitle>
@@ -144,9 +144,9 @@ const Referrals = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Invite Friends */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="w-full lg:col-span-2 space-y-6">
           {/* Your Referral Code */}
           <Card>
             <CardHeader>
@@ -299,7 +299,7 @@ const Referrals = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="w-full space-y-6">
           {/* How It Works */}
           <Card>
             <CardHeader>

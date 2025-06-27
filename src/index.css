@@ -1,0 +1,450 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 100% 15.7%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 100% 15.7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 100% 15.7%;
+    --primary: 240 100% 15.7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 344 100% 62%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 91.4%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 344 100% 62%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 240 100% 15.7%;
+    --radius: 1.5625rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 255 255 255 / 0.1;
+    --card-foreground: 210 40% 98%;
+    --popover: 255 255 255 / 0.1;
+    --popover-foreground: 210 40% 98%;
+    --primary: 240 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 344 100% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 344 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 255 255 255 / 0.15;
+    --input: 255 255 255 / 0.1;
+    --ring: 240 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Enhanced header animations */
+  .header-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  /* Smooth theme transitions */
+  * {
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Enhanced gradients for dark mode */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Enhanced shadows for cards in dark mode */
+  .dark .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Enhanced border styles for dark mode */
+  .dark .border {
+    border-color: hsl(var(--border) / 0.8);
+  }
+  
+  /* Profile dropdown enhancements */
+  .profile-dropdown {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Ensure proper text colors in dark mode */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark p {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark span {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix card text specifically */
+  .dark [data-slot="card"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .card {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Override specific text classes in dark mode */
+  .dark .text-lg {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .text-xl {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .text-2xl {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .text-3xl {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .text-sm {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .text-xs {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+  
+  .dark .font-bold {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .font-semibold {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .font-medium {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix button contrast in both themes */
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--primary));
+  }
+  
+  .btn-primary:hover {
+    background-color: hsl(var(--primary) / 0.9);
+    border-color: hsl(var(--primary) / 0.9);
+  }
+  
+  .btn-secondary {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    border-color: hsl(var(--secondary));
+  }
+  
+  .btn-secondary:hover {
+    background-color: hsl(var(--secondary) / 0.9);
+    border-color: hsl(var(--secondary) / 0.9);
+  }
+  
+  /* Fix badge colors */
+  .dark .badge-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  
+  .dark .badge-secondary {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  
+  /* Enhanced badge visibility in both themes */
+  .dark .bg-green-100 {
+    background-color: hsl(142 76% 20%) !important;
+    color: hsl(142 76% 80%) !important;
+  }
+  
+  .dark .text-green-800 {
+    color: hsl(142 76% 80%) !important;
+  }
+  
+  .dark .bg-blue-100 {
+    background-color: hsl(217 91% 20%) !important;
+    color: hsl(217 91% 80%) !important;
+  }
+  
+  .dark .text-blue-800 {
+    color: hsl(217 91% 80%) !important;
+  }
+  
+  .dark .bg-yellow-100 {
+    background-color: hsl(45 93% 25%) !important;
+    color: hsl(45 93% 85%) !important;
+  }
+  
+  .dark .text-yellow-800 {
+    color: hsl(45 93% 85%) !important;
+  }
+  
+  .dark .bg-red-100 {
+    background-color: hsl(0 84% 25%) !important;
+    color: hsl(0 84% 85%) !important;
+  }
+  
+  .dark .text-red-800 {
+    color: hsl(0 84% 85%) !important;
+  }
+  
+  .dark .bg-purple-100 {
+    background-color: hsl(270 91% 25%) !important;
+    color: hsl(270 91% 85%) !important;
+  }
+  
+  .dark .text-purple-800 {
+    color: hsl(270 91% 85%) !important;
+  }
+  
+  /* Ensure links are visible */
+  .dark a {
+    color: hsl(var(--primary));
+  }
+  
+  .dark a:hover {
+    color: hsl(var(--primary) / 0.8);
+  }
+  
+  /* Fix specific text elements */
+  .dark .text-primary {
+    color: hsl(var(--primary)) !important;
+  }
+  
+  .dark .text-secondary {
+    color: hsl(var(--secondary)) !important;
+  }
+  
+  .dark .text-foreground {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix specific component text visibility */
+  .dark .text-gray-600 {
+    color: hsl(215 20.2% 65.1%) !important;
+  }
+  
+  .dark .text-gray-700 {
+    color: hsl(215 20.2% 65.1%) !important;
+  }
+  
+  .dark .text-gray-800 {
+    color: hsl(215 20.2% 75.1%) !important;
+  }
+  
+  .dark .text-gray-900 {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Ensure form labels are visible */
+  .dark label {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix table text visibility */
+  .dark table {
+    color: hsl(var(--foreground));
+  }
+  
+  .dark th {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark td {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix dropdown and select text */
+  .dark select {
+    color: hsl(var(--foreground)) !important;
+    background-color: hsl(var(--background)) !important;
+  }
+  
+  .dark option {
+    color: hsl(var(--foreground)) !important;
+    background-color: hsl(var(--background)) !important;
+  }
+  
+  /* Fix placeholder text */
+  .dark input::placeholder {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+  
+  .dark textarea::placeholder {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+  
+  /* Ensure proper contrast for status indicators */
+  .dark .bg-green-50 {
+    background-color: hsl(142 76% 15%) !important;
+    color: hsl(142 76% 85%) !important;
+  }
+  
+  .dark .border-green-200 {
+    border-color: hsl(142 76% 30%) !important;
+  }
+  
+  .dark .text-green-700 {
+    color: hsl(142 76% 80%) !important;
+  }
+  
+  /* Additional text fixes for complete visibility */
+  .dark .leading-tight {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark .line-clamp-1,
+  .dark .line-clamp-2,
+  .dark .line-clamp-3 {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix card title and description visibility */
+  .dark [class*="CardTitle"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .dark [class*="CardDescription"] {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+  
+  /* Ensure buttons maintain proper text color */
+  .dark button {
+    color: inherit !important;
+  }
+  
+  /* Fix any remaining text elements */
+  .dark .text-base {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Override any inherited colors that might interfere */
+  .dark * {
+    color: inherit;
+  }
+  
+  /* Ensure body text is properly set in dark mode */
+  .dark body {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Glassmorphism effect for cards in dark mode */
+  .dark .card,
+  .dark [data-radix-select-content] {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+    border-radius: 12px !important;
+  }
+  
+  /* Enhanced glassmorphism for hover states */
+  .dark .card:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Glassmorphism for dropdowns and modals */
+  .dark .dropdown-content,
+  .dark .modal-content,
+  .dark .popover-content {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+  }
+  
+  /* Glassmorphism for buttons in dark mode */
+  .dark .btn-glass {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  .dark .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  /* Special glassmorphism for profile dropdown */
+  .dark .profile-dropdown {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+  }
+}

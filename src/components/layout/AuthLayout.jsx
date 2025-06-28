@@ -1,11 +1,22 @@
 import { Outlet } from 'react-router-dom'
+import maskGroupImage from '@/assets/Mask-Group.webp'
 
 const AuthLayout = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left side - Branding */}
-      <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-12 lg:py-12 bg-primary">
-        <div className="text-center">
+      <div 
+        className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-12 lg:py-12 bg-primary relative"
+        style={{
+          backgroundImage: `url(${maskGroupImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative text-center z-10">
           <div className="w-16 h-16 bg-primary-foreground rounded-2xl flex items-center justify-center mx-auto mb-6">
             <span className="text-primary font-bold text-2xl">SL</span>
           </div>

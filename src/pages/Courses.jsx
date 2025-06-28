@@ -205,7 +205,7 @@ const Courses = () => {
 
                     <div className="pt-1">
                       <Button asChild size="sm" className="w-full text-xs">
-                        <Link to={`/courses/${course.id}`}>
+                        <Link to={`/app/courses/${course.id}`}>
                           Continue Learning
                           <ChevronRight className="w-3 h-3 ml-1" />
                         </Link>
@@ -294,7 +294,7 @@ const Courses = () => {
                     <div className="pt-1">
                       {isEnrolled(course.id) ? (
                         <Button asChild size="sm" className="w-full text-xs">
-                          <Link to={`/courses/${course.id}`}>Continue</Link>
+                          <Link to={`/app/courses/${course.id}`}>Continue</Link>
                         </Button>
                       ) : (
                         <Button
@@ -484,7 +484,7 @@ const Courses = () => {
               <div className="pt-2">
                 {isEnrolled(course.id) ? (
                   <Button asChild className="w-full">
-                    <Link to={`/courses/${course.id}`}>
+                    <Link to={`/app/courses/${course.id}`}>
                       Continue Learning
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </Link>

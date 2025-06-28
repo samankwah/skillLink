@@ -15,7 +15,11 @@
       "Bash(npm uninstall:*)",
       "Bash(pkill:*)",
       "WebFetch(domain:www.atingi.org)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npm run lint)",
+      "Bash(true)",
+      "Bash(npm run build:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

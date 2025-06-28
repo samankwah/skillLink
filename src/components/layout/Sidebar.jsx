@@ -16,17 +16,17 @@ import {
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Courses", href: "/courses", icon: BookOpen },
-  { name: "Certificates", href: "/certificates", icon: Award },
-  { name: "Profile", href: "/profile", icon: User },
-  { name: "Skills", href: "/skills", icon: Lightbulb },
-  { name: "Connections", href: "/connections", icon: Users },
-  { name: "Messages", href: "/messages", icon: MessageCircle },
-  { name: "Jobs", href: "/jobs", icon: Briefcase },
-  { name: "Projects", href: "/projects", icon: FolderOpen },
-  { name: "Referrals", href: "/referrals", icon: UserPlus },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { name: "Dashboard", href: "/app/dashboard", icon: LayoutDashboard },
+  { name: "Courses", href: "/app/courses", icon: BookOpen },
+  { name: "Certificates", href: "/app/certificates", icon: Award },
+  { name: "Profile", href: "/app/profile", icon: User },
+  { name: "Skills", href: "/app/skills", icon: Lightbulb },
+  { name: "Connections", href: "/app/connections", icon: Users },
+  { name: "Messages", href: "/app/messages", icon: MessageCircle },
+  { name: "Jobs", href: "/app/jobs", icon: Briefcase },
+  { name: "Projects", href: "/app/projects", icon: FolderOpen },
+  { name: "Referrals", href: "/app/referrals", icon: UserPlus },
+  { name: "Settings", href: "/app/settings", icon: Settings },
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {

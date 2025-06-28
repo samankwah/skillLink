@@ -139,9 +139,9 @@ const QuizPlayer = ({
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2">
             {score >= passingScore ? (
-              <Award className="w-6 h-6 text-green-600" />
+              <Award className="w-6 h-6 text-primary" />
             ) : (
-              <XCircle className="w-6 h-6 text-red-600" />
+              <XCircle className="w-6 h-6 text-destructive" />
             )}
             Quiz Results
           </CardTitle>
@@ -153,7 +153,7 @@ const QuizPlayer = ({
           {/* Score Display */}
           <div className="text-center space-y-4">
             <div className="text-6xl font-bold">
-              <span className={score >= passingScore ? 'text-green-600' : 'text-red-600'}>
+              <span className={score >= passingScore ? 'text-primary' : 'text-destructive'}>
                 {score}%
               </span>
             </div>
@@ -181,13 +181,13 @@ const QuizPlayer = ({
               const isCorrect = userAnswer === question.correctAnswer
               
               return (
-                <Card key={question.id} className={`border-l-4 ${isCorrect ? 'border-l-green-500' : 'border-l-red-500'}`}>
+                <Card key={question.id} className={`border-l-4 ${isCorrect ? 'border-l-primary' : 'border-l-destructive'}`}>
                   <CardContent className="pt-4">
                     <div className="flex items-start gap-3">
                       {isCorrect ? (
-                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                        <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                       ) : (
-                        <XCircle className="w-5 h-5 text-red-600 mt-0.5" />
+                        <XCircle className="w-5 h-5 text-destructive mt-0.5" />
                       )}
                       <div className="flex-1">
                         <p className="font-medium mb-2">
@@ -196,14 +196,14 @@ const QuizPlayer = ({
                         <div className="space-y-1 text-sm">
                           <div className="flex items-center gap-2">
                             <span className="text-muted-foreground">Your answer:</span>
-                            <span className={isCorrect ? 'text-green-600' : 'text-red-600'}>
+                            <span className={isCorrect ? 'text-primary' : 'text-destructive'}>
                               {question.options[userAnswer] || 'Not answered'}
                             </span>
                           </div>
                           {!isCorrect && (
                             <div className="flex items-center gap-2">
                               <span className="text-muted-foreground">Correct answer:</span>
-                              <span className="text-green-600">
+                              <span className="text-primary">
                                 {question.options[question.correctAnswer]}
                               </span>
                             </div>
@@ -247,7 +247,7 @@ const QuizPlayer = ({
           {timeLimit && (
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span className={`font-mono ${timeRemaining < 60 ? 'text-red-600' : ''}`}>
+              <span className={`font-mono ${timeRemaining < 60 ? 'text-destructive' : ''}`}>
                 {formatTime(timeRemaining)}
               </span>
             </div>
@@ -279,8 +279,8 @@ const QuizPlayer = ({
                       ? 'border-primary bg-primary/5' 
                       : 'border-border hover:border-primary/50'
                   } ${
-                    status === 'correct' ? 'border-green-500 bg-green-50' :
-                    status === 'incorrect' ? 'border-red-500 bg-red-50' : ''
+                    status === 'correct' ? 'border-primary bg-primary/10' :
+                    status === 'incorrect' ? 'border-destructive bg-destructive/10' : ''
                   } ${isSubmitted ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                 >
                   <div className="flex items-center gap-3">
@@ -293,10 +293,10 @@ const QuizPlayer = ({
                     </div>
                     <span>{option}</span>
                     {status === 'correct' && (
-                      <CheckCircle className="w-5 h-5 text-green-600 ml-auto" />
+                      <CheckCircle className="w-5 h-5 text-primary ml-auto" />
                     )}
                     {status === 'incorrect' && (
-                      <XCircle className="w-5 h-5 text-red-600 ml-auto" />
+                      <XCircle className="w-5 h-5 text-destructive ml-auto" />
                     )}
                   </div>
                 </button>

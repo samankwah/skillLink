@@ -84,7 +84,7 @@ const Referrals = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="w-full space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -98,7 +98,7 @@ const Referrals = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Referrals</CardTitle>
@@ -144,9 +144,9 @@ const Referrals = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Invite Friends */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="w-full lg:col-span-2 space-y-6">
           {/* Your Referral Code */}
           <Card>
             <CardHeader>
@@ -158,29 +158,29 @@ const Referrals = () => {
                 Share this code with friends to earn rewards
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1">
+            <CardContent className="space-y-4 overflow-hidden">
+              <div className="flex flex-col gap-4">
+                <div className="w-full">
                   <div className="relative">
                     <Input
                       value={referralCode}
                       readOnly
-                      className="text-center font-mono text-lg font-bold"
+                      className="text-center font-mono text-lg font-bold w-full"
                     />
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <Button variant="outline" onClick={copyReferralCode}>
-                    <Copy className="h-4 w-4 mr-2" />
-                    Copy Code
+                <div className="flex flex-col sm:flex-row gap-2 w-full">
+                  <Button variant="outline" onClick={copyReferralCode} className="w-full sm:flex-1 flex-shrink-0">
+                    <Copy className="h-4 w-4 mr-2 flex-shrink-0" />
+                    <span className="truncate">Copy Code</span>
                   </Button>
-                  <Button variant="outline" onClick={copyReferralLink}>
-                    <Copy className="h-4 w-4 mr-2" />
-                    Copy Link
+                  <Button variant="outline" onClick={copyReferralLink} className="w-full sm:flex-1 flex-shrink-0">
+                    <Copy className="h-4 w-4 mr-2 flex-shrink-0" />
+                    <span className="truncate">Copy Link</span>
                   </Button>
-                  <Button onClick={shareReferralLink}>
-                    <Share2 className="h-4 w-4 mr-2" />
-                    Share
+                  <Button onClick={shareReferralLink} className="w-full sm:flex-1 flex-shrink-0">
+                    <Share2 className="h-4 w-4 mr-2 flex-shrink-0" />
+                    <span className="truncate">Share</span>
                   </Button>
                 </div>
               </div>
@@ -251,33 +251,35 @@ const Referrals = () => {
               {referrals.length > 0 ? (
                 <div className="space-y-4">
                   {referrals.map((referral) => (
-                    <div key={referral.id} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
+                    <div key={referral.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border rounded-lg gap-4">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center flex-shrink-0">
                           <UserPlus className="h-5 w-5 text-muted-foreground" />
                         </div>
-                        <div>
-                          <p className="font-medium">{referral.name}</p>
-                          <p className="text-sm text-muted-foreground">{referral.email}</p>
-                          <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
-                            <Calendar className="h-3 w-3" />
-                            <span>Referred: {referral.referredDate}</span>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{referral.name}</p>
+                          <p className="text-sm text-muted-foreground truncate">{referral.email}</p>
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mt-1 text-xs text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              <span>Referred: {referral.referredDate}</span>
+                            </div>
                             {referral.joinedDate && (
-                              <>
-                                <span>•</span>
+                              <div className="flex items-center gap-1">
+                                <span className="hidden sm:inline">•</span>
                                 <span>Joined: {referral.joinedDate}</span>
-                              </>
+                              </div>
                             )}
                           </div>
                         </div>
                       </div>
-                      <div className="text-right">
+                      <div className="flex flex-col sm:items-end gap-2">
                         <Badge variant="secondary" className={getStatusColor(referral.status)}>
                           {getStatusIcon(referral.status)}
                           <span className="ml-1 capitalize">{referral.status}</span>
                         </Badge>
                         {referral.rewardEarned > 0 && (
-                          <p className="text-sm font-medium text-green-600 mt-1">
+                          <p className="text-sm font-medium text-green-600">
                             +{referral.rewardEarned} points
                           </p>
                         )}
@@ -299,7 +301,7 @@ const Referrals = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="w-full space-y-6">
           {/* How It Works */}
           <Card>
             <CardHeader>

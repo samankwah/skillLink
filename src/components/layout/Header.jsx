@@ -30,14 +30,14 @@ const Header = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="sticky top-0 z-60 w-screen border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
+    <header className="sticky top-0 z-60 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
       {/* Mobile Header - Full Width */}
-      <div className="lg:hidden flex items-center justify-between px-0 py-2 w-screen">
+      <div className="lg:hidden flex items-center justify-between px-4 py-2 w-full">
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full h-10 w-10 hover:bg-muted ml-2"
+          className="rounded-full h-10 w-10 hover:bg-muted"
           onClick={onMenuClick}
           aria-label="Open menu"
         >
@@ -58,7 +58,7 @@ const Header = ({ onMenuClick }) => {
         </Link>
 
         {/* Mobile Right Icons - Hide ThemeToggle on mobile */}
-        <div className="flex items-center space-x-2 mr-2">
+        <div className="flex items-center space-x-2">
           <Button
             variant="ghost"
             size="icon"

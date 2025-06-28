@@ -38,6 +38,7 @@ import {
   Folder,
   CheckSquare,
   Check,
+  ChevronLeft,
 } from "lucide-react";
 import { useProjects } from "@/context/ProjectsContext";
 
@@ -237,12 +238,12 @@ const Projects = () => {
     : null;
 
   return (
-    <div className="h-full flex">
+    <div className="w-full max-w-none h-full flex">
       {/* Sidebar - Project List */}
       <div
         className={`${
           selectedProject ? "hidden lg:flex" : "flex"
-        } w-full lg:w-80 border-r bg-background flex-col`}
+        } w-full max-w-none lg:w-80 border-r bg-background flex-col`}
       >
         <div className="p-4 border-b">
           <div className="flex items-center justify-between mb-4">
@@ -322,12 +323,12 @@ const Projects = () => {
       <div
         className={`${
           selectedProject ? "flex" : "hidden lg:flex"
-        } flex-1 flex-col`}
+        } w-full max-w-none flex-1 flex-col`}
       >
         {selectedProject ? (
           <>
             {/* Project Header */}
-            <div className="p-4 sm:p-6 border-b bg-background">
+            <div className="w-full max-w-none p-4 sm:p-6 border-b bg-background">
               <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-4 gap-4">
                 {/* Back button for mobile */}
                 <Button
@@ -336,19 +337,7 @@ const Projects = () => {
                   className="lg:hidden self-start"
                   onClick={() => setSelectedProject(null)}
                 >
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
+                  <ChevronLeft className="w-4 h-4 mr-2" />
                   Back to Projects
                 </Button>
                 <div className="flex-1">
@@ -393,28 +382,37 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 lg:self-start">
-                  <Button variant="outline" size="sm" className="min-w-0">
-                    <MessageSquare className="w-4 h-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Chat</span>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto lg:self-start">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full sm:w-auto"
+                    onClick={() => {
+                      // TODO: Implement chat functionality
+                      console.log('Opening chat for project:', selectedProject?.title)
+                      alert('Chat functionality coming soon!')
+                    }}
+                  >
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    <span>Chat</span>
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={handleEditProject}
-                    className="min-w-0"
+                    className="w-full sm:w-auto"
                   >
-                    <Edit className="w-4 h-4 sm:mr-2" />
-                    <span className="hidden sm:inline">Edit</span>
+                    <Edit className="w-4 h-4 mr-2" />
+                    <span>Edit</span>
                   </Button>
-                  <Button variant="outline" size="sm" className="min-w-0">
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto">
                     <MoreVertical className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
 
               {/* Project Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="w-full max-w-none grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
@@ -519,8 +517,8 @@ const Projects = () => {
             </div>
 
             {/* Tabs */}
-            <div className="border-b">
-              <nav className="flex space-x-8 px-6">
+            <div className="w-full max-w-none border-b">
+              <nav className="flex space-x-4 lg:space-x-8 px-4 lg:px-6 overflow-x-auto">
                 {[
                   { id: "overview", label: "Overview" },
                   {
@@ -565,9 +563,9 @@ const Projects = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="flex-1 overflow-auto">
+            <div className="w-full max-w-none flex-1 overflow-auto">
               {activeTab === "overview" && (
-                <div className="p-6 space-y-6">
+                <div className="w-full max-w-none p-4 lg:p-6 space-y-6">
                   {/* Milestones */}
                   <Card>
                     <CardHeader>
@@ -680,24 +678,24 @@ const Projects = () => {
               )}
 
               {activeTab === "tasks" && (
-                <div className="p-6 space-y-4">
+                <div className="w-full max-w-none p-4 lg:p-6 space-y-4">
                   {/* Tasks Header */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="relative">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-1">
+                      <div className="relative flex-1 max-w-xs">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                         <Input
                           placeholder="Search tasks..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
-                          className="pl-10 w-64"
+                          className="pl-10 w-full"
                         />
                       </div>
 
                       <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
-                        className="px-3 py-2 border border-input rounded-md bg-background"
+                        className="px-3 py-2 border border-input rounded-md bg-background w-full sm:w-auto"
                       >
                         <option value="all">All Status</option>
                         <option value="pending">Pending</option>
@@ -708,10 +706,10 @@ const Projects = () => {
 
                     <Button
                       onClick={() => setShowTaskModal(true)}
-                      className="min-w-0"
+                      className="w-full lg:w-auto"
                     >
-                      <Plus className="w-4 h-4 sm:mr-2" />
-                      <span className="hidden sm:inline">Add Task</span>
+                      <Plus className="w-4 h-4 mr-2" />
+                      <span>Add Task</span>
                     </Button>
                   </div>
 
@@ -804,21 +802,23 @@ const Projects = () => {
                               </div>
                             </div>
 
-                            <div className="flex gap-1">
+                            <div className="flex flex-col sm:flex-row gap-1 sm:gap-1 w-full sm:w-auto">
                               <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => handleEditTask(task)}
-                                className="h-8 w-8 p-0"
+                                className="w-full sm:w-8 sm:h-8 sm:p-0 h-auto p-2"
                               >
-                                <Edit className="w-3 h-3" />
+                                <Edit className="w-3 h-3 sm:mr-0 mr-2" />
+                                <span className="sm:hidden">Edit</span>
                               </Button>
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                className="h-8 w-8 p-0"
+                                className="w-full sm:w-8 sm:h-8 sm:p-0 h-auto p-2"
                               >
-                                <MoreVertical className="w-4 h-4" />
+                                <MoreVertical className="w-4 h-4 sm:mr-0 mr-2" />
+                                <span className="sm:hidden">More</span>
                               </Button>
                             </div>
                           </div>
@@ -830,9 +830,9 @@ const Projects = () => {
               )}
 
               {activeTab === "files" && (
-                <div className="p-6 space-y-4">
+                <div className="w-full max-w-none p-4 lg:p-6 space-y-4">
                   {/* Files Header */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <h2 className="text-lg font-semibold">Project Files</h2>
                     <div className="flex items-center space-x-2">
                       <input
@@ -845,10 +845,10 @@ const Projects = () => {
                         onClick={() =>
                           document.getElementById("file-upload").click()
                         }
-                        className="min-w-0"
+                        className="w-full sm:w-auto"
                       >
-                        <Upload className="w-4 h-4 sm:mr-2" />
-                        <span className="hidden sm:inline">Upload File</span>
+                        <Upload className="w-4 h-4 mr-2" />
+                        <span>Upload File</span>
                       </Button>
                     </div>
                   </div>
@@ -900,10 +900,10 @@ const Projects = () => {
               )}
 
               {activeTab === "team" && (
-                <div className="p-6 space-y-4">
-                  <div className="flex items-center justify-between">
+                <div className="w-full max-w-none p-4 lg:p-6 space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <h2 className="text-lg font-semibold">Team Members</h2>
-                    <Button>
+                    <Button className="w-full sm:w-auto">
                       <Plus className="w-4 h-4 mr-2" />
                       Add Member
                     </Button>

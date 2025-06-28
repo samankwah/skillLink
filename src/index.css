@@ -51,6 +51,13 @@
 @layer base {
   * {
     border-color: hsl(var(--border));
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   
   body {
@@ -59,11 +66,40 @@
     font-family: 'IBM Plex Sans', sans-serif;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'IBM Plex Serif', serif;
     font-weight: 600;
+  }
+  
+  /* Mobile-first full width containers */
+  @media (max-width: 1024px) {
+    .max-w-7xl {
+      max-width: 100% !important;
+    }
+    
+    .mx-auto {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    
+    /* Ensure mobile containers take full width */
+    main, .container {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Remove any horizontal margins on mobile */
+    body, html, #root {
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden !important;
+    }
   }
 }
 

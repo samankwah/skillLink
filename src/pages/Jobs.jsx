@@ -213,7 +213,7 @@ const Jobs = () => {
                      applications
 
   return (
-    <div className="space-y-6">
+    <div className="w-full max-w-none space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Jobs & Projects</h1>
@@ -221,7 +221,7 @@ const Jobs = () => {
       </div>
 
       {/* Search and Filters */}
-      <Card>
+      <Card className="w-full max-w-none">
         <CardContent className="pt-6">
           <div className="flex gap-4 mb-4">
             <div className="flex-1">
@@ -280,8 +280,8 @@ const Jobs = () => {
       </Card>
 
       {/* Tabs */}
-      <div className="border-b">
-        <nav className="flex space-x-8">
+      <div className="w-full max-w-none border-b">
+        <nav className="flex space-x-4 lg:space-x-8 px-4 lg:px-0 overflow-x-auto">
           {[
             { id: 'jobs', label: 'Jobs', count: jobs.length },
             { id: 'projects', label: 'Projects', count: projects.length },
@@ -309,9 +309,9 @@ const Jobs = () => {
       </div>
 
       {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="w-full max-w-none grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="w-full max-w-none lg:col-span-2 space-y-4">
           {activeTab === 'jobs' && (
             <>
               {searchResults.map((job) => {
@@ -319,45 +319,45 @@ const Jobs = () => {
                 const saved = isJobSaved(job.id)
 
                 return (
-                  <Card key={job.id} className="hover:shadow-md transition-shadow">
-                    <CardContent className="pt-6">
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="flex-1">
+                  <Card key={job.id} className="hover:shadow-md transition-shadow overflow-hidden">
+                    <CardContent className="pt-6 overflow-hidden">
+                      <div className="flex justify-between items-start mb-4 overflow-hidden">
+                        <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 mb-2">
-                            <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+                            <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
                               <Building className="w-6 h-6" />
                             </div>
-                            <div>
-                              <h3 className="font-semibold text-lg">{job.title}</h3>
-                              <p className="text-muted-foreground">{job.company}</p>
+                            <div className="min-w-0 flex-1">
+                              <h3 className="font-semibold text-lg truncate">{job.title}</h3>
+                              <p className="text-muted-foreground truncate">{job.company}</p>
                             </div>
                           </div>
                           
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                            <div className="flex items-center">
-                              <MapPin className="w-4 h-4 mr-1" />
-                              {job.location}
-                              {job.isRemote && <Badge variant="outline" className="ml-2">Remote</Badge>}
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground mb-3">
+                            <div className="flex items-center min-w-0">
+                              <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
+                              <span className="truncate">{job.location}</span>
+                              {job.isRemote && <Badge variant="outline" className="ml-2 flex-shrink-0">Remote</Badge>}
                             </div>
-                            <div className="flex items-center">
-                              <DollarSign className="w-4 h-4 mr-1" />
-                              {formatSalary(job.salary)}
+                            <div className="flex items-center min-w-0">
+                              <DollarSign className="w-4 h-4 mr-1 flex-shrink-0" />
+                              <span className="truncate">{formatSalary(job.salary)}</span>
                             </div>
-                            <div className="flex items-center">
-                              <Clock className="w-4 h-4 mr-1" />
-                              {formatDate(job.postedDate)}
+                            <div className="flex items-center min-w-0">
+                              <Clock className="w-4 h-4 mr-1 flex-shrink-0" />
+                              <span className="truncate">{formatDate(job.postedDate)}</span>
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-2 mb-3">
-                            <Badge className={getJobTypeColor(job.type)}>
+                          <div className="flex flex-wrap items-center gap-2 mb-3">
+                            <Badge className={`${getJobTypeColor(job.type)} flex-shrink-0`}>
                               {job.type}
                             </Badge>
-                            <Badge variant="outline">
+                            <Badge variant="outline" className="flex-shrink-0">
                               {job.experienceLevel}
                             </Badge>
                             {job.matchScore && (
-                              <Badge variant="outline">
+                              <Badge variant="outline" className="flex-shrink-0">
                                 <Star className="w-3 h-3 mr-1" />
                                 {job.matchScore}% match
                               </Badge>
@@ -368,33 +368,34 @@ const Jobs = () => {
                             {job.description}
                           </p>
 
-                          <div className="flex flex-wrap gap-1 mb-4">
+                          <div className="flex flex-wrap gap-1 mb-4 overflow-hidden">
                             {job.skills.slice(0, 4).map((skill) => (
-                              <Badge key={skill} variant="outline" className="text-xs">
+                              <Badge key={skill} variant="outline" className="text-xs flex-shrink-0">
                                 {skill}
                               </Badge>
                             ))}
                             {job.skills.length > 4 && (
-                              <Badge variant="outline" className="text-xs">
+                              <Badge variant="outline" className="text-xs flex-shrink-0">
                                 +{job.skills.length - 4} more
                               </Badge>
                             )}
                           </div>
                         </div>
 
-                        <div className="flex flex-col items-end gap-2">
+                        <div className="flex flex-col items-end gap-2 flex-shrink-0">
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => handleSaveJob(job.id)}
+                            className="flex-shrink-0"
                           >
                             {saved ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
                           </Button>
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
                           <div className="flex items-center">
                             <Users className="w-3 h-3 mr-1" />
                             {job.applicationsCount} applicants
@@ -405,19 +406,19 @@ const Jobs = () => {
                           </div>
                         </div>
 
-                        <div className="flex gap-2">
+                        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                           {applicationStatus ? (
-                            <div className={`flex items-center gap-1 text-sm ${getApplicationStatusColor(applicationStatus)}`}>
+                            <div className={`flex items-center justify-center gap-1 text-sm px-3 py-2 rounded-md ${getApplicationStatusColor(applicationStatus)}`}>
                               {getApplicationStatusIcon(applicationStatus)}
                               <span className="capitalize">{applicationStatus}</span>
                             </div>
                           ) : (
-                            <Button onClick={() => handleApplyToJob(job)}>
+                            <Button onClick={() => handleApplyToJob(job)} className="w-full sm:w-auto">
                               <Send className="w-4 h-4 mr-2" />
                               Apply
                             </Button>
                           )}
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto">
                             <ExternalLink className="w-4 h-4 mr-2" />
                             View Details
                           </Button>
@@ -494,8 +495,8 @@ const Jobs = () => {
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
                         <div className="flex items-center">
                           <Users className="w-3 h-3 mr-1" />
                           {project.proposalsCount} proposals
@@ -506,12 +507,12 @@ const Jobs = () => {
                         </div>
                       </div>
 
-                      <div className="flex gap-2">
-                        <Button onClick={() => handleSubmitProposal(project)}>
+                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                        <Button onClick={() => handleSubmitProposal(project)} className="w-full sm:w-auto">
                           <Send className="w-4 h-4 mr-2" />
                           Submit Proposal
                         </Button>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto">
                           <ExternalLink className="w-4 h-4 mr-2" />
                           View Details
                         </Button>
@@ -561,7 +562,7 @@ const Jobs = () => {
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                         <div className="flex gap-2">
                           <Badge className={getJobTypeColor(job.type)}>
                             {job.type}
@@ -571,12 +572,12 @@ const Jobs = () => {
                           </Badge>
                         </div>
 
-                        <div className="flex gap-2">
-                          <Button variant="outline" size="sm">
+                        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto">
                             <Eye className="w-4 h-4 mr-2" />
                             View Application
                           </Button>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto">
                             <ExternalLink className="w-4 h-4 mr-2" />
                             View Job
                           </Button>
@@ -591,7 +592,7 @@ const Jobs = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="w-full max-w-none space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Recommended for You</CardTitle>
@@ -659,8 +660,8 @@ const Jobs = () => {
 
       {/* Application Modal */}
       {showApplicationModal && selectedJob && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             <CardHeader>
               <CardTitle>Apply to {selectedJob.title}</CardTitle>
               <CardDescription>
@@ -694,8 +695,8 @@ const Jobs = () => {
 
       {/* Proposal Modal */}
       {showProposalModal && selectedProject && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             <CardHeader>
               <CardTitle>Submit Proposal for {selectedProject.title}</CardTitle>
               <CardDescription>

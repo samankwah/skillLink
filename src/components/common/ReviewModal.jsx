@@ -34,7 +34,7 @@ const ReviewModal = ({ isOpen, onClose, courseId, courseName }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+      <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>

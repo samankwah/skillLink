@@ -264,12 +264,12 @@ const Projects = () => {
     : null;
 
   return (
-    <div className="w-full max-w-none h-full flex">
+    <div className="w-full h-full flex">
       {/* Sidebar - Project List */}
       <div
         className={`${
           selectedProject ? "hidden lg:flex" : "flex"
-        } w-full max-w-none lg:w-80 border-r bg-background flex-col`}
+        } w-full lg:w-80 border-r bg-background flex-col`}
       >
         <div className="p-4 border-b">
           <div className="flex items-center justify-between mb-4">
@@ -1013,8 +1013,8 @@ const Projects = () => {
 
       {/* Task Modal */}
       {showTaskModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Create New Task</CardTitle>
               <CardDescription>Add a new task to the project</CardDescription>
@@ -1100,8 +1100,8 @@ const Projects = () => {
 
       {/* Project Edit Modal */}
       {showProjectEditModal && editingProject && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Edit Project</CardTitle>
               <CardDescription>Update project details</CardDescription>
@@ -1218,8 +1218,8 @@ const Projects = () => {
 
       {/* Task Edit Modal */}
       {editingTask && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Edit Task</CardTitle>
               <CardDescription>Update task details</CardDescription>
@@ -1331,8 +1331,8 @@ const Projects = () => {
 
       {/* New Project Modal */}
       {showNewProjectModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Create New Project</CardTitle>
               <CardDescription>Set up a new project with basic details</CardDescription>

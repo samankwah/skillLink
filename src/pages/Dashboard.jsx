@@ -68,7 +68,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 space-y-6">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6">
       {/* Welcome Section */}
       <div className="text-center md:text-left">
         <h1 className="text-2xl md:text-3xl font-bold">
@@ -80,14 +80,14 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Skills</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Total Skills</CardTitle>
             <Lightbulb className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{skills?.length || 0}</div>
+            <div className="text-xl sm:text-2xl font-bold">{skills?.length || 0}</div>
             <p className="text-xs text-muted-foreground">
               {skills?.length > 0
                 ? "+2 from last month"
@@ -98,11 +98,11 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Connections</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Connections</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-xl sm:text-2xl font-bold">
               {profile?.connectionCount || 0}
             </div>
             <p className="text-xs text-muted-foreground">+5 this week</p>
@@ -111,11 +111,11 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Profile Views</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Profile Views</CardTitle>
             <Eye className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-xl sm:text-2xl font-bold">
               {profile?.profileViews || 0}
             </div>
             <p className="text-xs text-muted-foreground">+18% from last week</p>
@@ -124,18 +124,18 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Skill Match</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">Skill Match</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">85%</div>
+            <div className="text-xl sm:text-2xl font-bold">85%</div>
             <p className="text-xs text-muted-foreground">Market relevance</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Top Skills Overview */}
         <Card>
           <CardHeader>
@@ -146,7 +146,7 @@ const Dashboard = () => {
                   Most endorsed and experienced skills
                 </CardDescription>
               </div>
-              <Button variant="outline" size="sm" asChild>
+              <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
                 <Link to="/profile?tab=skills">View All</Link>
               </Button>
             </div>
@@ -158,8 +158,8 @@ const Dashboard = () => {
                   key={skill.id}
                   className="flex items-center justify-between"
                 >
-                  <div className="flex items-center space-x-3">
-                    <span className="font-medium line-clamp-1">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <span className="text-sm sm:text-base font-medium line-clamp-1">
                       {skill.name}
                     </span>
                     <Badge
@@ -169,7 +169,7 @@ const Dashboard = () => {
                       {skill.level}
                     </Badge>
                   </div>
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <div className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-muted-foreground">
                     <Award className="w-4 h-4" />
                     <span>{skill.endorsements}</span>
                   </div>
@@ -198,7 +198,7 @@ const Dashboard = () => {
                 <CardTitle>Work Experience</CardTitle>
                 <CardDescription>Your professional background</CardDescription>
               </div>
-              <Button variant="outline" size="sm" asChild>
+              <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
                 <Link to="/profile?tab=experience">View All</Link>
               </Button>
             </div>
@@ -206,12 +206,12 @@ const Dashboard = () => {
           <CardContent className="space-y-4">
             {experience && experience.length > 0 ? (
               experience.slice(0, 3).map((exp) => (
-                <div key={exp.id} className="flex space-x-3">
-                  <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                    <Building className="w-5 h-5" />
+                <div key={exp.id} className="flex space-x-2 sm:space-x-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-secondary rounded-lg flex items-center justify-center">
+                    <Building className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold line-clamp-1">
+                    <h4 className="text-sm sm:text-base font-semibold line-clamp-1">
                       {exp.position}
                     </h4>
                     <p className="text-sm text-muted-foreground line-clamp-1">
@@ -284,7 +284,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <Button variant="outline" className="w-full" asChild>
+            <Button variant="outline" className="w-full text-xs sm:text-sm" asChild>
               <Link to="/activity">View All Activity</Link>
             </Button>
           </CardContent>
@@ -300,12 +300,12 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Avatar className="w-10 h-10">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
                   <AvatarFallback>AM</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium line-clamp-1">
+                  <p className="text-xs sm:text-sm font-medium line-clamp-1">
                     Alice Miller
                   </p>
                   <p className="text-xs text-muted-foreground line-clamp-1">
@@ -321,16 +321,16 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <Button size="sm">Connect</Button>
+              <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3">Connect</Button>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Avatar className="w-10 h-10">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
                   <AvatarFallback>RT</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium line-clamp-1">
+                  <p className="text-xs sm:text-sm font-medium line-clamp-1">
                     Robert Taylor
                   </p>
                   <p className="text-xs text-muted-foreground line-clamp-1">
@@ -346,16 +346,16 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <Button size="sm">Connect</Button>
+              <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3">Connect</Button>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Avatar className="w-10 h-10">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
                   <AvatarFallback>LW</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium line-clamp-1">Lisa Wong</p>
+                  <p className="text-xs sm:text-sm font-medium line-clamp-1">Lisa Wong</p>
                   <p className="text-xs text-muted-foreground line-clamp-1">
                     Product Manager
                   </p>
@@ -369,12 +369,12 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <Button size="sm">Connect</Button>
+              <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3">Connect</Button>
             </div>
 
-            <Button variant="outline" className="w-full" asChild>
+            <Button variant="outline" className="w-full text-xs sm:text-sm" asChild>
               <Link to="/connections">
-                <Users className="mr-2 h-4 w-4" />
+                <Users className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                 Explore Connections
               </Link>
             </Button>
@@ -400,10 +400,10 @@ const Dashboard = () => {
             {enrolledCourses.slice(0, 2).map((course) => (
               <div
                 key={course.id}
-                className="flex items-center gap-4 p-4 border rounded-lg hover:bg-accent/50 transition-colors"
+                className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 border rounded-lg hover:bg-accent/50 transition-colors"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                  <Play className="h-6 w-6 text-[#191961]" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                  <Play className="h-4 w-4 sm:h-6 sm:w-6 text-[#191961]" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold line-clamp-1">{course.title}</h4>
@@ -415,7 +415,7 @@ const Dashboard = () => {
                     <span className="text-xs text-muted-foreground">65%</span>
                   </div>
                 </div>
-                <Button size="sm" asChild>
+                <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3" asChild>
                   <Link to={`/courses/${course.id}`}>Continue</Link>
                 </Button>
               </div>

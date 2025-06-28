@@ -213,7 +213,7 @@ const Jobs = () => {
                      applications
 
   return (
-    <div className="w-full max-w-none space-y-6">
+    <div className="space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Jobs & Projects</h1>
@@ -221,7 +221,7 @@ const Jobs = () => {
       </div>
 
       {/* Search and Filters */}
-      <Card className="w-full max-w-none">
+      <Card className="w-full">
         <CardContent className="pt-6">
           <div className="flex gap-4 mb-4">
             <div className="flex-1">
@@ -280,7 +280,7 @@ const Jobs = () => {
       </Card>
 
       {/* Tabs */}
-      <div className="w-full max-w-none border-b">
+      <div className="w-full border-b">
         <nav className="flex space-x-4 lg:space-x-8 px-4 lg:px-0 overflow-x-auto">
           {[
             { id: 'jobs', label: 'Jobs', count: jobs.length },
@@ -309,9 +309,9 @@ const Jobs = () => {
       </div>
 
       {/* Content */}
-      <div className="w-full max-w-none grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Content */}
-        <div className="w-full max-w-none lg:col-span-2 space-y-4">
+        <div className="w-full lg:col-span-2 space-y-4">
           {activeTab === 'jobs' && (
             <>
               {searchResults.map((job) => {
@@ -592,7 +592,7 @@ const Jobs = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="w-full max-w-none space-y-6">
+        <div className="w-full space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Recommended for You</CardTitle>
@@ -660,8 +660,8 @@ const Jobs = () => {
 
       {/* Application Modal */}
       {showApplicationModal && selectedJob && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Apply to {selectedJob.title}</CardTitle>
               <CardDescription>
@@ -695,8 +695,8 @@ const Jobs = () => {
 
       {/* Proposal Modal */}
       {showProposalModal && selectedProject && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Submit Proposal for {selectedProject.title}</CardTitle>
               <CardDescription>

@@ -150,23 +150,23 @@ const Connections = () => {
     switch (user.connectionStatus) {
       case 'connected':
         return (
-          <Button variant="outline" size="sm" onClick={() => handleStartConversation(user.id)} className="min-w-0">
-            <MessageCircle className="w-4 h-4 sm:mr-2" />
-            <span className="hidden sm:inline">Message</span>
+          <Button variant="outline" size="sm" onClick={() => handleStartConversation(user.id)} className="flex-1 sm:flex-none">
+            <MessageCircle className="w-4 h-4 mr-1 sm:mr-2" />
+            <span className="text-xs sm:text-sm">Message</span>
           </Button>
         )
       case 'pending':
         return (
-          <Button variant="outline" size="sm" disabled className="min-w-0">
-            <Clock className="w-4 h-4 sm:mr-2" />
-            <span className="hidden sm:inline">Pending</span>
+          <Button variant="outline" size="sm" disabled className="flex-1 sm:flex-none">
+            <Clock className="w-4 h-4 mr-1 sm:mr-2" />
+            <span className="text-xs sm:text-sm">Pending</span>
           </Button>
         )
       default:
         return (
-          <Button size="sm" onClick={() => handleSendRequest(user)} className="min-w-0">
-            <UserPlus className="w-4 h-4 sm:mr-2" />
-            <span className="hidden sm:inline">Connect</span>
+          <Button size="sm" onClick={() => handleSendRequest(user)} className="flex-1 sm:flex-none">
+            <UserPlus className="w-4 h-4 mr-1 sm:mr-2" />
+            <span className="text-xs sm:text-sm">Connect</span>
           </Button>
         )
     }
@@ -325,16 +325,16 @@ const Connections = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2 self-end sm:self-auto">
-                        <Button variant="outline" size="sm" onClick={() => handleStartConversation(connection.id)} className="min-w-0">
-                          <MessageCircle className="w-4 h-4 sm:mr-2" />
-                          <span className="hidden sm:inline">Message</span>
+                      <div className="flex items-center gap-2 self-end sm:self-auto">
+                        <Button variant="outline" size="sm" onClick={() => handleStartConversation(connection.id)} className="flex-1 sm:flex-none">
+                          <MessageCircle className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="text-xs sm:text-sm">Message</span>
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleViewProfile(connection)} className="min-w-0">
-                          <Eye className="w-4 h-4 sm:mr-2" />
-                          <span className="hidden sm:inline">View</span>
+                        <Button variant="outline" size="sm" onClick={() => handleViewProfile(connection)} className="flex-1 sm:flex-none">
+                          <Eye className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="text-xs sm:text-sm">View</span>
                         </Button>
-                        <Button variant="ghost" size="sm" className="min-w-0">
+                        <Button variant="ghost" size="sm" className="px-2">
                           <MoreHorizontal className="w-4 h-4" />
                         </Button>
                       </div>
@@ -443,9 +443,9 @@ const Connections = () => {
                       
                       <div className="flex gap-2 pt-2">
                         {getConnectionStatusButton(user)}
-                        <Button variant="outline" size="sm" onClick={() => handleViewProfile(user)} className="min-w-0">
-                          <Eye className="w-4 h-4 sm:mr-2" />
-                          <span className="hidden sm:inline">View</span>
+                        <Button variant="outline" size="sm" onClick={() => handleViewProfile(user)} className="flex-1 sm:flex-none">
+                          <Eye className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="text-xs sm:text-sm">View</span>
                         </Button>
                       </div>
                     </div>
@@ -497,13 +497,13 @@ const Connections = () => {
                         </p>
                       )}
                       <div className="flex gap-2">
-                        <Button size="sm" onClick={() => handleAcceptRequest(request.id)} className="min-w-0">
-                          <Check className="w-4 h-4 sm:mr-2" />
-                          <span className="hidden sm:inline">Accept</span>
+                        <Button size="sm" onClick={() => handleAcceptRequest(request.id)} className="flex-1 sm:flex-none">
+                          <Check className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="text-xs sm:text-sm">Accept</span>
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleDeclineRequest(request.id)} className="min-w-0">
-                          <X className="w-4 h-4 sm:mr-2" />
-                          <span className="hidden sm:inline">Decline</span>
+                        <Button variant="outline" size="sm" onClick={() => handleDeclineRequest(request.id)} className="flex-1 sm:flex-none">
+                          <X className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="text-xs sm:text-sm">Decline</span>
                         </Button>
                       </div>
                     </div>
@@ -572,8 +572,8 @@ const Connections = () => {
 
       {/* Connection Request Modal */}
       {showConnectionModal && selectedUser && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-md mx-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 bg-card border-border">
             <CardHeader>
               <CardTitle>Send Connection Request</CardTitle>
               <CardDescription>
@@ -619,8 +619,8 @@ const Connections = () => {
 
       {/* Profile View/Edit Modal */}
       {showProfileModal && selectedProfile && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto bg-card border-border">
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
                 <CardTitle>{isEditing ? 'Edit Profile' : 'Profile'}</CardTitle>

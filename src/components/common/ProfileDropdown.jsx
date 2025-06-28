@@ -99,7 +99,7 @@ const ProfileDropdown = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-background border border-border rounded-lg shadow-lg z-50 overflow-hidden-x profile-dropdown">
+        <div className="absolute right-0 top-full mt-2 w-64 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden-x profile-dropdown">
           {/* User Info Header */}
           <div className="px-4 py-3 border-b border-border bg-muted/30">
             <div className="flex items-center space-x-3">

@@ -109,6 +109,22 @@ const Profile = () => {
   const handlePhotoChange = (event) => {
     const file = event.target.files[0]
     if (file) {
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+      if (!allowedTypes.includes(file.type)) {
+        alert('Please select a valid image file (JPEG, PNG, GIF, or WebP)')
+        event.target.value = ''
+        return
+      }
+
+      // Validate file size (5MB max)
+      const maxSize = 5 * 1024 * 1024 // 5MB in bytes
+      if (file.size > maxSize) {
+        alert('File size must be less than 5MB')
+        event.target.value = ''
+        return
+      }
+
       setNewPhoto(file)
       const reader = new FileReader()
       reader.onload = (e) => {
@@ -182,27 +198,50 @@ const Profile = () => {
                   Edit Photo
                 </Button>
                 {isEditingPhoto && (
-                  <div className="flex flex-col gap-2">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePhotoChange}
-                      className="text-xs"
-                    />
+                  <div className="flex flex-col gap-3 mt-3">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium">Choose Profile Photo</label>
+                      <div className="relative">
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                          onChange={handlePhotoChange}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                          id="photo-upload"
+                        />
+                        <div className="flex items-center justify-center w-full h-32 border-2 border-dashed border-border rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+                          <div className="text-center">
+                            <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                            <p className="text-sm font-medium">Click to upload or drag and drop</p>
+                            <p className="text-xs text-muted-foreground">JPEG, PNG, GIF, WebP (max 5MB)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     {photoPreview && (
-                      <div className="flex gap-2">
-                        <Button size="sm" onClick={handleSavePhoto}>
-                          <Save className="w-4 h-4 mr-1" />
-                          Save
-                        </Button>
-                        <Button size="sm" variant="outline" onClick={() => {
-                          setIsEditingPhoto(false)
-                          setPhotoPreview(null)
-                          setNewPhoto(null)
-                        }}>
-                          <X className="w-4 h-4 mr-1" />
-                          Cancel
-                        </Button>
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <img 
+                            src={photoPreview} 
+                            alt="Preview" 
+                            className="w-16 h-16 rounded-full object-cover border-2 border-border"
+                          />
+                          <span className="text-sm text-muted-foreground">Preview</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" onClick={handleSavePhoto}>
+                            <Save className="w-4 h-4 mr-1" />
+                            Save Photo
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => {
+                            setIsEditingPhoto(false)
+                            setPhotoPreview(null)
+                            setNewPhoto(null)
+                          }}>
+                            <X className="w-4 h-4 mr-1" />
+                            Cancel
+                          </Button>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -567,8 +606,8 @@ const Profile = () => {
 
       {/* Add Skill Modal */}
       {showAddSkillModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Add New Skill</CardTitle>
               <CardDescription>Add a skill to your profile</CardDescription>
@@ -619,8 +658,8 @@ const Profile = () => {
 
       {/* Add Experience Modal */}
       {showAddExperienceModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Add Work Experience</CardTitle>
               <CardDescription>Add your professional experience</CardDescription>
@@ -702,8 +741,8 @@ const Profile = () => {
 
       {/* Add Education Modal */}
       {showAddEducationModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
             <CardHeader>
               <CardTitle>Add Education</CardTitle>
               <CardDescription>Add your educational background</CardDescription>

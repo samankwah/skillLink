@@ -32,7 +32,7 @@ const Header = ({ onMenuClick }) => {
   return (
     <header className="sticky top-0 z-60 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
       {/* Mobile Header - Full Width */}
-      <div className="lg:hidden flex items-center justify-between px-2 py-2 w-full">
+      <div className="lg:hidden flex items-center justify-between px-4 py-2 w-full">
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"

@@ -87,6 +87,19 @@
       margin-left: 0 !important;
       margin-right: 0 !important;
     }
+    
+    /* Ensure mobile containers take full width */
+    main, .container {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Remove any horizontal margins on mobile */
+    body, html, #root {
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden !important;
+    }
   }
 }
 

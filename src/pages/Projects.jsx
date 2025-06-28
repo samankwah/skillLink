@@ -78,6 +78,16 @@ const Projects = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [showProjectEditModal, setShowProjectEditModal] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+  const [newProject, setNewProject] = useState({
+    title: '',
+    description: '',
+    status: 'planning',
+    priority: 'medium',
+    budget: { total: 0, currency: 'USD' },
+    client: { name: '', company: '', email: '' },
+    timeline: { startDate: '', endDate: '' }
+  });
 
   useEffect(() => {
     if (activeProjects.length > 0 && !selectedProject) {
@@ -205,6 +215,22 @@ const Projects = () => {
     setEditingProject(null);
   };
 
+  const handleCreateProject = () => {
+    // In a real app, this would create project via API
+    console.log("Creating new project:", newProject);
+    alert('Project created successfully! (This would integrate with your backend API)');
+    setShowNewProjectModal(false);
+    setNewProject({
+      title: '',
+      description: '',
+      status: 'planning',
+      priority: 'medium',
+      budget: { total: 0, currency: 'USD' },
+      client: { name: '', company: '', email: '' },
+      timeline: { startDate: '', endDate: '' }
+    });
+  };
+
   const handleEditTask = (task) => {
     setEditingTask({ ...task });
   };
@@ -248,7 +274,11 @@ const Projects = () => {
         <div className="p-4 border-b">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-lg sm:text-xl font-semibold">Projects</h1>
-            <Button size="sm" className="min-w-0">
+            <Button 
+              size="sm" 
+              className="min-w-0"
+              onClick={() => setShowNewProjectModal(true)}
+            >
               <Plus className="w-4 h-4 sm:mr-2" />
               <span className="hidden sm:inline">New Project</span>
             </Button>
@@ -983,8 +1013,8 @@ const Projects = () => {
 
       {/* Task Modal */}
       {showTaskModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-lg">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
             <CardHeader>
               <CardTitle>Create New Task</CardTitle>
               <CardDescription>Add a new task to the project</CardDescription>
@@ -1070,8 +1100,8 @@ const Projects = () => {
 
       {/* Project Edit Modal */}
       {showProjectEditModal && editingProject && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
             <CardHeader>
               <CardTitle>Edit Project</CardTitle>
               <CardDescription>Update project details</CardDescription>
@@ -1188,8 +1218,8 @@ const Projects = () => {
 
       {/* Task Edit Modal */}
       {editingTask && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="w-full max-w-md mx-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
             <CardHeader>
               <CardTitle>Edit Task</CardTitle>
               <CardDescription>Update task details</CardDescription>
@@ -1291,6 +1321,227 @@ const Projects = () => {
                   Save Changes
                 </Button>
                 <Button variant="outline" onClick={handleCancelTaskEdit}>
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* New Project Modal */}
+      {showNewProjectModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+            <CardHeader>
+              <CardTitle>Create New Project</CardTitle>
+              <CardDescription>Set up a new project with basic details</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Project Title *
+                  </label>
+                  <Input
+                    value={newProject.title}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        title: e.target.value,
+                      }))
+                    }
+                    placeholder="Enter project title"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Status
+                  </label>
+                  <select
+                    value={newProject.status}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        status: e.target.value,
+                      }))
+                    }
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  >
+                    <option value="planning">Planning</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="on_hold">On Hold</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Priority
+                  </label>
+                  <select
+                    value={newProject.priority}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        priority: e.target.value,
+                      }))
+                    }
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Budget (USD)
+                  </label>
+                  <Input
+                    type="number"
+                    value={newProject.budget.total}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        budget: {
+                          ...prev.budget,
+                          total: parseFloat(e.target.value) || 0,
+                        },
+                      }))
+                    }
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium mb-1 block">
+                  Description
+                </label>
+                <textarea
+                  value={newProject.description}
+                  onChange={(e) =>
+                    setNewProject((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
+                  }
+                  placeholder="Describe your project..."
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
+                  rows={3}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Client Name
+                  </label>
+                  <Input
+                    value={newProject.client.name}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        client: {
+                          ...prev.client,
+                          name: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="Client name"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Company
+                  </label>
+                  <Input
+                    value={newProject.client.company}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        client: {
+                          ...prev.client,
+                          company: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="Company name"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Client Email
+                  </label>
+                  <Input
+                    type="email"
+                    value={newProject.client.email}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        client: {
+                          ...prev.client,
+                          email: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="client@company.com"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    Start Date
+                  </label>
+                  <Input
+                    type="date"
+                    value={newProject.timeline.startDate}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        timeline: {
+                          ...prev.timeline,
+                          startDate: e.target.value,
+                        },
+                      }))
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    End Date
+                  </label>
+                  <Input
+                    type="date"
+                    value={newProject.timeline.endDate}
+                    onChange={(e) =>
+                      setNewProject((prev) => ({
+                        ...prev,
+                        timeline: {
+                          ...prev.timeline,
+                          endDate: e.target.value,
+                        },
+                      }))
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <Button 
+                  onClick={handleCreateProject}
+                  disabled={!newProject.title.trim()}
+                >
+                  <Check className="w-4 h-4 mr-2" />
+                  Create Project
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowNewProjectModal(false)}
+                >
                   Cancel
                 </Button>
               </div>

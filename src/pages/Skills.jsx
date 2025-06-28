@@ -25,6 +25,9 @@ const Skills = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");
+  const [mySkills, setMySkills] = useState([]);
+  const [showSkillModal, setShowSkillModal] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   // Mock data for skills discovery
   const skillCategories = [
@@ -139,6 +142,20 @@ const Skills = () => {
       default:
         return "bg-gray-100 text-gray-800";
     }
+  };
+
+  const handleAddToMySkills = (skill) => {
+    if (mySkills.some(s => s.id === skill.id)) {
+      alert('This skill is already in your profile!');
+      return;
+    }
+    setMySkills(prev => [...prev, skill]);
+    alert(`${skill.name} added to your skills profile!`);
+  };
+
+  const handleLearnMore = (skill) => {
+    setSelectedSkill(skill);
+    setShowSkillModal(true);
   };
 
   const filteredSkills = popularSkills.filter((skill) => {
@@ -339,11 +356,20 @@ const Skills = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button size="sm" className="flex-1 text-[#191961]">
+                  <Button 
+                    size="sm" 
+                    className="flex-1 text-[#191961]"
+                    onClick={() => handleAddToMySkills(skill)}
+                    disabled={mySkills.some(s => s.id === skill.id)}
+                  >
                     <Plus className="w-4 h-4 mr-2" />
-                    Add to My Skills
+                    {mySkills.some(s => s.id === skill.id) ? 'Added' : 'Add to My Skills'}
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handleLearnMore(skill)}
+                  >
                     <BookOpen className="w-4 h-4 mr-2" />
                     Learn More
                   </Button>
@@ -429,6 +455,118 @@ const Skills = () => {
           </Card>
         </div>
       </div>
+
+      {/* Learn More Modal */}
+      {showSkillModal && selectedSkill && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border-0">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Lightbulb className="w-5 h-5" />
+                {selectedSkill.name}
+              </CardTitle>
+              <CardDescription>
+                Complete skill information and learning resources
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Skill Overview */}
+              <div>
+                <h3 className="font-semibold mb-2">Overview</h3>
+                <p className="text-muted-foreground">{selectedSkill.description}</p>
+              </div>
+
+              {/* Skill Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="text-center p-4 border rounded-lg">
+                  <Users className="w-8 h-8 mx-auto mb-2 text-primary" />
+                  <div className="font-semibold">{(selectedSkill.professionals / 1000000).toFixed(1)}M</div>
+                  <div className="text-sm text-muted-foreground">Professionals</div>
+                </div>
+                <div className="text-center p-4 border rounded-lg">
+                  <Award className="w-8 h-8 mx-auto mb-2 text-primary" />
+                  <div className="font-semibold">{selectedSkill.averageSalary}</div>
+                  <div className="text-sm text-muted-foreground">Average Salary</div>
+                </div>
+                <div className="text-center p-4 border rounded-lg">
+                  <TrendingUp className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                  <div className="font-semibold">{selectedSkill.growth}</div>
+                  <div className="text-sm text-muted-foreground">Job Growth</div>
+                </div>
+              </div>
+
+              {/* Prerequisites */}
+              {selectedSkill.prerequisites.length > 0 && (
+                <div>
+                  <h3 className="font-semibold mb-2">Prerequisites</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSkill.prerequisites.map((prereq) => (
+                      <Badge key={prereq} variant="outline">
+                        {prereq}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Related Skills */}
+              <div>
+                <h3 className="font-semibold mb-2">Related Skills</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedSkill.relatedSkills.map((related) => (
+                    <Badge key={related} variant="outline" className="cursor-pointer hover:bg-accent">
+                      {related}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Learning Path */}
+              <div>
+                <h3 className="font-semibold mb-2">Recommended Learning Path</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-3 border rounded-lg">
+                    <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                    <div>
+                      <div className="font-medium">Fundamentals</div>
+                      <div className="text-sm text-muted-foreground">Learn the basic concepts and terminology</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 border rounded-lg">
+                    <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                    <div>
+                      <div className="font-medium">Hands-on Practice</div>
+                      <div className="text-sm text-muted-foreground">Work on practical projects and exercises</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 border rounded-lg">
+                    <div className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                    <div>
+                      <div className="font-medium">Advanced Topics</div>
+                      <div className="text-sm text-muted-foreground">Explore advanced concepts and specialized areas</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <Button 
+                  className="flex-1"
+                  onClick={() => handleAddToMySkills(selectedSkill)}
+                  disabled={mySkills.some(s => s.id === selectedSkill.id)}
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  {mySkills.some(s => s.id === selectedSkill.id) ? 'Added to Skills' : 'Add to My Skills'}
+                </Button>
+                <Button variant="outline" onClick={() => setShowSkillModal(false)}>
+                  Close
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };

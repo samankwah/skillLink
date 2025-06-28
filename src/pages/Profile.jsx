@@ -26,10 +26,13 @@ import {
 } from 'lucide-react'
 import { useProfile } from '@/context/ProfileContext'
 import { useAuth } from '@/context/AuthContext'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const Profile = () => {
   const { user } = useAuth()
   const { profile, skills, experience, education, isLoading } = useProfile()
+  
+  useDocumentTitle("Profile")
   const [activeTab, setActiveTab] = useState('overview')
   const [isEditingProfile, setIsEditingProfile] = useState(false)
   const [isEditingPhoto, setIsEditingPhoto] = useState(false)

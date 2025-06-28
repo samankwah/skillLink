@@ -26,6 +26,7 @@ import {
   TrendingUp
 } from 'lucide-react'
 import { useJobs } from '@/context/JobsContext'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const Jobs = () => {
   const {
@@ -49,6 +50,8 @@ const Jobs = () => {
     getApplicationStatus,
     isJobSaved
   } = useJobs()
+  
+  useDocumentTitle("Jobs & Projects")
 
   const [searchResults, setSearchResults] = useState([])
   const [projectResults, setProjectResults] = useState([])

@@ -25,11 +25,14 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { useProfile } from "@/context/ProfileContext";
 import { useLMS } from "@/context/LMSContext";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Dashboard = () => {
   const { user } = useAuth();
   const { profile, skills, experience, isLoading } = useProfile();
   const { courses, enrolledCourses, certificates } = useLMS();
+  
+  useDocumentTitle("Dashboard");
 
   const getInitials = (firstName, lastName) => {
     return `${firstName?.charAt(0) || ""}${

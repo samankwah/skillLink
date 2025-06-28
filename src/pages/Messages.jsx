@@ -29,9 +29,11 @@ import {
 } from "lucide-react";
 import { useMessaging } from "@/context/MessagingContext";
 import { useAuth } from "@/context/AuthContext";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Messages = () => {
   const { user } = useAuth();
+  useDocumentTitle("Messages");
   const {
     conversations,
     activeConversation,

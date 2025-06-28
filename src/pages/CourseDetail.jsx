@@ -24,8 +24,10 @@ import { useLMS } from '@/context/LMSContext'
 import VideoPlayer from '@/components/common/VideoPlayer'
 import QuizPlayer from '@/components/common/QuizPlayer'
 import ReviewModal from '@/components/common/ReviewModal'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const CourseDetail = () => {
+  useDocumentTitle('Course Details')
   const { courseId } = useParams()
   const navigate = useNavigate()
   const { courses, enrolledCourses, courseProgress, updateProgress, completeCourse } = useLMS()

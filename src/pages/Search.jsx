@@ -25,8 +25,10 @@ import {
   Lightbulb
 } from 'lucide-react'
 import { useSearch } from '@/context/SearchContext'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const SearchPage = () => {
+  useDocumentTitle('Search')
   const [searchParams] = useSearchParams()
   const {
     searchHistory,

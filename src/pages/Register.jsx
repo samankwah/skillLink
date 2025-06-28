@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/context/AuthContext'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const Register = () => {
+  useDocumentTitle('Register')
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

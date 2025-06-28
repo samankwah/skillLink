@@ -41,6 +41,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { useProjects } from "@/context/ProjectsContext";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Projects = () => {
   const {
@@ -61,6 +62,8 @@ const Projects = () => {
     getTasksByStatus,
     calculateProjectStats,
   } = useProjects();
+  
+  useDocumentTitle("Projects");
 
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeTab, setActiveTab] = useState("overview");

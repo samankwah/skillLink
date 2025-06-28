@@ -23,8 +23,10 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useLMS } from "@/context/LMSContext";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Courses = () => {
+  useDocumentTitle("Courses");
   const { courses, enrolledCourses, enrollInCourse, isLoading } = useLMS();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");

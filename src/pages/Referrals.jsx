@@ -17,8 +17,10 @@ import {
   Gift
 } from 'lucide-react'
 import { useReferral } from '@/context/ReferralContext'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const Referrals = () => {
+  useDocumentTitle('Referrals')
   const { 
     referralCode, 
     referrals, 

@@ -20,8 +20,10 @@ import {
   Award,
   Lightbulb,
 } from "lucide-react";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Skills = () => {
+  useDocumentTitle("Skills Discovery");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");

@@ -10,8 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useAuth } from "@/context/AuthContext";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Login = () => {
+  useDocumentTitle("Login");
   const [formData, setFormData] = useState({
     email: "",
     password: "",

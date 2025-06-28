@@ -24,6 +24,7 @@ import {
 } from 'lucide-react'
 import { useConnections } from '@/context/ConnectionsContext'
 import { useMessaging } from '@/context/MessagingContext'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const Connections = () => {
   const {
@@ -41,6 +42,8 @@ const Connections = () => {
     removeConnection
   } = useConnections()
   const { startConversation } = useMessaging()
+  
+  useDocumentTitle("Connections")
 
   const [activeTab, setActiveTab] = useState('network')
   const [searchResults, setSearchResults] = useState([])

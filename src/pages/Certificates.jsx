@@ -21,8 +21,10 @@ import {
   Copy,
 } from "lucide-react";
 import { useLMS } from "@/context/LMSContext";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Certificates = () => {
+  useDocumentTitle("Certificates");
   const { certificates } = useLMS();
   const [searchQuery, setSearchQuery] = useState("");
   const [verificationCode, setVerificationCode] = useState("");

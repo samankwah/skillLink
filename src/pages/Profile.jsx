@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
+import { Input } from '@/components/ui/input'
 import { 
   Edit, 
   MapPin, 
@@ -17,7 +18,11 @@ import {
   Award,
   Building,
   GraduationCap,
-  Eye
+  Eye,
+  Save,
+  X,
+  Upload,
+  Camera
 } from 'lucide-react'
 import { useProfile } from '@/context/ProfileContext'
 import { useAuth } from '@/context/AuthContext'
@@ -26,6 +31,21 @@ const Profile = () => {
   const { user } = useAuth()
   const { profile, skills, experience, education, isLoading } = useProfile()
   const [activeTab, setActiveTab] = useState('overview')
+  const [isEditingProfile, setIsEditingProfile] = useState(false)
+  const [isEditingPhoto, setIsEditingPhoto] = useState(false)
+  const [editedProfile, setEditedProfile] = useState({})
+  const [newPhoto, setNewPhoto] = useState(null)
+  const [photoPreview, setPhotoPreview] = useState(null)
+  const [showAddSkillModal, setShowAddSkillModal] = useState(false)
+  const [showAddExperienceModal, setShowAddExperienceModal] = useState(false)
+  const [showAddEducationModal, setShowAddEducationModal] = useState(false)
+  const [newSkill, setNewSkill] = useState({ name: '', level: 'Beginner', category: '' })
+  const [newExperience, setNewExperience] = useState({
+    company: '', position: '', startDate: '', endDate: '', description: '', current: false
+  })
+  const [newEducation, setNewEducation] = useState({
+    institution: '', degree: '', field: '', startDate: '', endDate: '', description: ''
+  })
 
   if (isLoading) {
     return (
@@ -69,6 +89,88 @@ const Profile = () => {
     }
   }
 
+  const handleEditProfile = () => {
+    setEditedProfile({ ...profile })
+    setIsEditingProfile(true)
+  }
+
+  const handleSaveProfile = () => {
+    // In a real app, this would update via API
+    console.log('Saving profile:', editedProfile)
+    alert('Profile updated successfully! (This would integrate with your backend API)')
+    setIsEditingProfile(false)
+  }
+
+  const handleCancelEdit = () => {
+    setEditedProfile({})
+    setIsEditingProfile(false)
+  }
+
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0]
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+      if (!allowedTypes.includes(file.type)) {
+        alert('Please select a valid image file (JPEG, PNG, GIF, or WebP)')
+        event.target.value = ''
+        return
+      }
+
+      // Validate file size (5MB max)
+      const maxSize = 5 * 1024 * 1024 // 5MB in bytes
+      if (file.size > maxSize) {
+        alert('File size must be less than 5MB')
+        event.target.value = ''
+        return
+      }
+
+      setNewPhoto(file)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setPhotoPreview(e.target.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleSavePhoto = () => {
+    // In a real app, this would upload to backend
+    console.log('Uploading new photo:', newPhoto)
+    alert('Photo updated successfully! (This would integrate with your backend API)')
+    setIsEditingPhoto(false)
+    setNewPhoto(null)
+    setPhotoPreview(null)
+  }
+
+  const handleAddSkill = () => {
+    // In a real app, this would add via API
+    console.log('Adding skill:', newSkill)
+    alert('Skill added successfully! (This would integrate with your backend API)')
+    setShowAddSkillModal(false)
+    setNewSkill({ name: '', level: 'Beginner', category: '' })
+  }
+
+  const handleAddExperience = () => {
+    // In a real app, this would add via API
+    console.log('Adding experience:', newExperience)
+    alert('Experience added successfully! (This would integrate with your backend API)')
+    setShowAddExperienceModal(false)
+    setNewExperience({
+      company: '', position: '', startDate: '', endDate: '', description: '', current: false
+    })
+  }
+
+  const handleAddEducation = () => {
+    // In a real app, this would add via API
+    console.log('Adding education:', newEducation)
+    alert('Education added successfully! (This would integrate with your backend API)')
+    setShowAddEducationModal(false)
+    setNewEducation({
+      institution: '', degree: '', field: '', startDate: '', endDate: '', description: ''
+    })
+  }
+
   return (
     <div className="space-y-6">
       {/* Profile Header */}
@@ -86,24 +188,108 @@ const Profile = () => {
                   </AvatarFallback>
                 )}
               </Avatar>
-              <Button variant="outline" size="sm" className="mb-2">
-                <Edit className="w-4 h-4 mr-2" />
-                Edit Photo
-              </Button>
+              <div className="flex flex-col gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setIsEditingPhoto(true)}
+                >
+                  <Camera className="w-4 h-4 mr-2" />
+                  Edit Photo
+                </Button>
+                {isEditingPhoto && (
+                  <div className="flex flex-col gap-3 mt-3">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium">Choose Profile Photo</label>
+                      <div className="relative">
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                          onChange={handlePhotoChange}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                          id="photo-upload"
+                        />
+                        <div className="flex items-center justify-center w-full h-32 border-2 border-dashed border-border rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+                          <div className="text-center">
+                            <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                            <p className="text-sm font-medium">Click to upload or drag and drop</p>
+                            <p className="text-xs text-muted-foreground">JPEG, PNG, GIF, WebP (max 5MB)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {photoPreview && (
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                          <img 
+                            src={photoPreview} 
+                            alt="Preview" 
+                            className="w-16 h-16 rounded-full object-cover border-2 border-border"
+                          />
+                          <span className="text-sm text-muted-foreground">Preview</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" onClick={handleSavePhoto}>
+                            <Save className="w-4 h-4 mr-1" />
+                            Save Photo
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => {
+                            setIsEditingPhoto(false)
+                            setPhotoPreview(null)
+                            setNewPhoto(null)
+                          }}>
+                            <X className="w-4 h-4 mr-1" />
+                            Cancel
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Profile Details */}
             <div className="flex-1">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h1 className="text-2xl md:text-3xl font-bold">
-                    {profile.firstName} {profile.lastName}
-                  </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground mb-2">{profile.title}</p>
-                  <div className="flex items-center text-muted-foreground mb-2">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    <span>{profile.location}</span>
-                  </div>
+                  {isEditingProfile ? (
+                    <div className="space-y-3 mb-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        <Input
+                          value={editedProfile.firstName || ''}
+                          onChange={(e) => setEditedProfile(prev => ({ ...prev, firstName: e.target.value }))}
+                          placeholder="First Name"
+                        />
+                        <Input
+                          value={editedProfile.lastName || ''}
+                          onChange={(e) => setEditedProfile(prev => ({ ...prev, lastName: e.target.value }))}
+                          placeholder="Last Name"
+                        />
+                      </div>
+                      <Input
+                        value={editedProfile.title || ''}
+                        onChange={(e) => setEditedProfile(prev => ({ ...prev, title: e.target.value }))}
+                        placeholder="Professional Title"
+                      />
+                      <Input
+                        value={editedProfile.location || ''}
+                        onChange={(e) => setEditedProfile(prev => ({ ...prev, location: e.target.value }))}
+                        placeholder="Location"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <h1 className="text-2xl md:text-3xl font-bold">
+                        {profile.firstName} {profile.lastName}
+                      </h1>
+                      <p className="text-lg md:text-xl text-muted-foreground mb-2">{profile.title}</p>
+                      <div className="flex items-center text-muted-foreground mb-2">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        <span>{profile.location}</span>
+                      </div>
+                    </>
+                  )}
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center">
                       <Eye className="w-4 h-4 mr-1" />
@@ -115,16 +301,39 @@ const Profile = () => {
                     </div>
                   </div>
                 </div>
-                <Button>
-                  <Edit className="w-4 h-4 mr-2" />
-                  Edit Profile
-                </Button>
+                {isEditingProfile ? (
+                  <div className="flex gap-2">
+                    <Button onClick={handleSaveProfile}>
+                      <Save className="w-4 h-4 mr-2" />
+                      Save Changes
+                    </Button>
+                    <Button variant="outline" onClick={handleCancelEdit}>
+                      <X className="w-4 h-4 mr-2" />
+                      Cancel
+                    </Button>
+                  </div>
+                ) : (
+                  <Button onClick={handleEditProfile}>
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit Profile
+                  </Button>
+                )}
               </div>
 
               {/* Bio */}
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {profile.bio}
-              </p>
+              {isEditingProfile ? (
+                <textarea
+                  value={editedProfile.bio || ''}
+                  onChange={(e) => setEditedProfile(prev => ({ ...prev, bio: e.target.value }))}
+                  placeholder="Tell us about yourself..."
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none mb-4"
+                  rows={4}
+                />
+              ) : (
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  {profile.bio}
+                </p>
+              )}
 
               {/* Contact Links */}
               <div className="flex flex-wrap gap-2 md:gap-4">
@@ -196,7 +405,11 @@ const Profile = () => {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span>Top Skills</span>
-                <Button variant="outline" size="sm">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setShowAddSkillModal(true)}
+                >
                   <Plus className="w-4 h-4 mr-2" />
                   Add Skill
                 </Button>
@@ -254,7 +467,7 @@ const Profile = () => {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <span>Work Experience</span>
-              <Button>
+              <Button onClick={() => setShowAddExperienceModal(true)}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Experience
               </Button>
@@ -307,7 +520,7 @@ const Profile = () => {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <span>Education</span>
-              <Button>
+              <Button onClick={() => setShowAddEducationModal(true)}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Education
               </Button>
@@ -355,7 +568,7 @@ const Profile = () => {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <span>All Skills</span>
-              <Button>
+              <Button onClick={() => setShowAddSkillModal(true)}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Skill
               </Button>
@@ -389,6 +602,218 @@ const Profile = () => {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* Add Skill Modal */}
+      {showAddSkillModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
+            <CardHeader>
+              <CardTitle>Add New Skill</CardTitle>
+              <CardDescription>Add a skill to your profile</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="text-sm font-medium mb-1 block">Skill Name</label>
+                <Input
+                  value={newSkill.name}
+                  onChange={(e) => setNewSkill(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="e.g., React, Python, Project Management"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-1 block">Proficiency Level</label>
+                <select
+                  value={newSkill.level}
+                  onChange={(e) => setNewSkill(prev => ({ ...prev, level: e.target.value }))}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                  <option value="Expert">Expert</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-1 block">Category</label>
+                <Input
+                  value={newSkill.category}
+                  onChange={(e) => setNewSkill(prev => ({ ...prev, category: e.target.value }))}
+                  placeholder="e.g., Programming, Design, Marketing"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button onClick={handleAddSkill} disabled={!newSkill.name.trim()}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Skill
+                </Button>
+                <Button variant="outline" onClick={() => setShowAddSkillModal(false)}>
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Add Experience Modal */}
+      {showAddExperienceModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
+            <CardHeader>
+              <CardTitle>Add Work Experience</CardTitle>
+              <CardDescription>Add your professional experience</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Company</label>
+                  <Input
+                    value={newExperience.company}
+                    onChange={(e) => setNewExperience(prev => ({ ...prev, company: e.target.value }))}
+                    placeholder="Company name"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Position</label>
+                  <Input
+                    value={newExperience.position}
+                    onChange={(e) => setNewExperience(prev => ({ ...prev, position: e.target.value }))}
+                    placeholder="Your role/position"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Start Date</label>
+                  <Input
+                    type="date"
+                    value={newExperience.startDate}
+                    onChange={(e) => setNewExperience(prev => ({ ...prev, startDate: e.target.value }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">End Date</label>
+                  <Input
+                    type="date"
+                    value={newExperience.endDate}
+                    onChange={(e) => setNewExperience(prev => ({ ...prev, endDate: e.target.value }))}
+                    disabled={newExperience.current}
+                  />
+                  <div className="flex items-center mt-2">
+                    <input
+                      type="checkbox"
+                      checked={newExperience.current}
+                      onChange={(e) => setNewExperience(prev => ({ 
+                        ...prev, 
+                        current: e.target.checked,
+                        endDate: e.target.checked ? '' : prev.endDate 
+                      }))}
+                      className="mr-2"
+                    />
+                    <label className="text-sm">Currently working here</label>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-1 block">Description</label>
+                <textarea
+                  value={newExperience.description}
+                  onChange={(e) => setNewExperience(prev => ({ ...prev, description: e.target.value }))}
+                  placeholder="Describe your role and achievements..."
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
+                  rows={4}
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button onClick={handleAddExperience} disabled={!newExperience.company.trim() || !newExperience.position.trim()}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Experience
+                </Button>
+                <Button variant="outline" onClick={() => setShowAddExperienceModal(false)}>
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Add Education Modal */}
+      {showAddEducationModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto shadow-2xl bg-card border-border">
+            <CardHeader>
+              <CardTitle>Add Education</CardTitle>
+              <CardDescription>Add your educational background</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="text-sm font-medium mb-1 block">Institution</label>
+                <Input
+                  value={newEducation.institution}
+                  onChange={(e) => setNewEducation(prev => ({ ...prev, institution: e.target.value }))}
+                  placeholder="University or school name"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Degree</label>
+                  <Input
+                    value={newEducation.degree}
+                    onChange={(e) => setNewEducation(prev => ({ ...prev, degree: e.target.value }))}
+                    placeholder="e.g., Bachelor's, Master's, PhD"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Field of Study</label>
+                  <Input
+                    value={newEducation.field}
+                    onChange={(e) => setNewEducation(prev => ({ ...prev, field: e.target.value }))}
+                    placeholder="e.g., Computer Science, Marketing"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Start Date</label>
+                  <Input
+                    type="date"
+                    value={newEducation.startDate}
+                    onChange={(e) => setNewEducation(prev => ({ ...prev, startDate: e.target.value }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">End Date</label>
+                  <Input
+                    type="date"
+                    value={newEducation.endDate}
+                    onChange={(e) => setNewEducation(prev => ({ ...prev, endDate: e.target.value }))}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-1 block">Description (Optional)</label>
+                <textarea
+                  value={newEducation.description}
+                  onChange={(e) => setNewEducation(prev => ({ ...prev, description: e.target.value }))}
+                  placeholder="Additional details about your education..."
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
+                  rows={3}
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button onClick={handleAddEducation} disabled={!newEducation.institution.trim() || !newEducation.degree.trim()}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Education
+                </Button>
+                <Button variant="outline" onClick={() => setShowAddEducationModal(false)}>
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       )}
     </div>
   )

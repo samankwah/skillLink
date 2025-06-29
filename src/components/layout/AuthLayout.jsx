@@ -20,23 +20,23 @@ const AuthLayout = () => {
           <div className="w-16 h-16 bg-primary-foreground rounded-2xl flex items-center justify-center mx-auto mb-6">
             <span className="text-primary font-bold text-2xl">SL</span>
           </div>
-          <h1 className="text-4xl font-bold text-primary-foreground mb-4">
+          <h1 className="text-4xl font-bold text-white mb-4">
             Welcome to SkillLink
           </h1>
-          <p className="text-xl text-primary-foreground/80 mb-8">
+          <p className="text-xl text-white/90 mb-8">
             Connect. Learn. Grow.
           </p>
-          <div className="space-y-4 text-primary-foreground/70">
+          <div className="space-y-4 text-white/80">
             <div className="flex items-center justify-center space-x-3">
-              <div className="w-2 h-2 bg-primary-foreground/70 rounded-full"></div>
+              <div className="w-2 h-2 bg-white/70 rounded-full"></div>
               <span>Discover professionals with complementary skills</span>
             </div>
             <div className="flex items-center justify-center space-x-3">
-              <div className="w-2 h-2 bg-primary-foreground/70 rounded-full"></div>
+              <div className="w-2 h-2 bg-white/70 rounded-full"></div>
               <span>Build meaningful professional connections</span>
             </div>
             <div className="flex items-center justify-center space-x-3">
-              <div className="w-2 h-2 bg-primary-foreground/70 rounded-full"></div>
+              <div className="w-2 h-2 bg-white/70 rounded-full"></div>
               <span>Find opportunities that match your expertise</span>
             </div>
           </div>

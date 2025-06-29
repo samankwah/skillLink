@@ -90,7 +90,7 @@ const Legal = () => {
               <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2">
                 <li>30-day money-back guarantee for new course purchases</li>
                 <li>Refunds must be requested within 30 days of purchase</li>
-                <li>Completed courses (>90% progress) are not eligible for refunds</li>
+                <li>Completed courses (&gt;90% progress) are not eligible for refunds</li>
                 <li>Subscription cancellations take effect at the end of the billing period</li>
                 <li>Partial refunds may be considered on a case-by-case basis</li>
               </ul>

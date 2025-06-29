@@ -87,21 +87,24 @@ const Landing = () => {
     {
       name: "Akosua Mensah",
       role: "Software Developer at Hubtel",
-      image: "/api/placeholder/64/64",
+      image:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face&auto=format",
       content:
         "SkillLink transformed my career from teaching to tech. The practical courses and mentorship helped me land my dream job in fintech.",
     },
     {
       name: "Kwame Asante",
       role: "Product Manager at DreamOval",
-      image: "/api/placeholder/64/64",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face&auto=format",
       content:
         "The certifications I earned through SkillLink directly led to my promotion. This platform is revolutionizing professional development in Ghana.",
     },
     {
       name: "Ama Osei",
       role: "UX Designer at Turntable",
-      image: "/api/placeholder/64/64",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face&auto=format",
       content:
         "Amazing community of Ghanaian professionals. I learned more in 6 months than I did in years of self-study. Now I mentor other women in tech.",
     },
@@ -173,10 +176,10 @@ const Landing = () => {
 
       {/* Stats Section */}
       <ParallaxSection
-        backgroundImage="/api/placeholder/1920/800"
+        backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=800&fit=crop&auto=format"
         className="py-24"
         speed={0.2}
-        overlayColor="bg-[#191961]/90"
+        overlayColor="bg-[#191961]/70"
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <FadeInSection className="text-center mb-16">
@@ -434,10 +437,10 @@ const Landing = () => {
 
       {/* CTA Section */}
       <ParallaxSection
-        backgroundImage="/api/placeholder/1920/800"
+        backgroundImage="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&h=800&fit=crop&auto=format"
         className="py-24"
         speed={0.2}
-        overlayColor="bg-gradient-to-r from-[#191961]/95 to-[#2d2b69]/95"
+        overlayColor="bg-gradient-to-r from-[#191961]/95 to-[#2d2b69]/70"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeInSection>

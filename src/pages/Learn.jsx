@@ -276,13 +276,13 @@ const Learn = () => {
                 {filteredCourses.length} courses found
               </p>
             </div>
-            <Button
+            {/* <Button
               variant="outline"
               className="flex items-center border-gray-600 text-gray-200 hover:bg-gray-800"
             >
               <Filter className="w-4 h-4 mr-2" />
               Filters
-            </Button>
+            </Button> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -438,7 +438,7 @@ const Learn = () => {
                   <div className="w-16 h-16 bg-[#191961] rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Award className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {path.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{path.description}</p>

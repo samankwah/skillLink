@@ -212,7 +212,7 @@ const Certificates = () => {
                       Complete courses to earn your first certificate
                     </p>
                     <Button asChild>
-                      <a href="/courses">Browse Courses</a>
+                      <a href="/app/courses">Browse Courses</a>
                     </Button>
                   </div>
                 )}

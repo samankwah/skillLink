@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 
+/* Import custom animations */
+@import './styles/animations.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -421,9 +424,9 @@
     color: hsl(var(--foreground)) !important;
   }
   
-  /* Override any inherited colors that might interfere */
-  .dark * {
-    color: inherit;
+  /* Override any inherited colors that might interfere - but don't use global inherit */
+  .dark :not(button):not([role="button"]):not(a) {
+    color: unset;
   }
   
   /* Ensure body text is properly set in dark mode */
@@ -482,5 +485,37 @@
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+  }
+
+  /* Force dark-specific color classes to be visible */
+  .dark .text-\[#191961\] {
+    color: #8b94db !important; /* Lighter version for dark mode */
+  }
+
+  .dark .text-\[#2d2b69\] {
+    color: #9ca3e8 !important; /* Lighter version for dark mode */
+  }
+
+  /* Ensure specific landing page elements are visible in light mode */
+  :not(.dark) .text-\[#191961\] {
+    color: #191961 !important;
+  }
+
+  :not(.dark) .text-\[#2d2b69\] {
+    color: #2d2b69 !important;
+  }
+
+  /* Fix testimonial text colors specifically */
+  .dark .text-gray-700 {
+    color: hsl(215 20.2% 75.1%) !important;
+  }
+
+  /* Fix any remaining white text on white background issues */
+  .dark .text-white {
+    color: #ffffff !important;
+  }
+
+  :not(.dark) .text-white {
+    color: #ffffff !important;
   }
 }

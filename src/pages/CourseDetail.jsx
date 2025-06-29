@@ -55,7 +55,7 @@ const CourseDetail = () => {
       <div className="text-center py-12">
         <p className="text-muted-foreground">Course not found</p>
         <Button asChild className="mt-4">
-          <Link to="/courses">Back to Courses</Link>
+          <Link to="/app/courses">Back to Courses</Link>
         </Button>
       </div>
     )
@@ -65,7 +65,7 @@ const CourseDetail = () => {
     return (
       <div className="max-w-4xl mx-auto space-y-6">
         <Button variant="ghost" asChild>
-          <Link to="/courses">
+          <Link to="/app/courses">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Courses
           </Link>
@@ -80,7 +80,7 @@ const CourseDetail = () => {
                 You need to enroll in this course to access the content
               </p>
               <Button asChild>
-                <Link to="/courses">Browse Courses</Link>
+                <Link to="/app/courses">Browse Courses</Link>
               </Button>
             </div>
           </CardContent>
@@ -178,7 +178,7 @@ const CourseDetail = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <Button variant="ghost" asChild>
-          <Link to="/courses">
+          <Link to="/app/courses">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Courses
           </Link>

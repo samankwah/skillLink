@@ -50,7 +50,7 @@ const Register = () => {
         email: formData.email,
         password: formData.password
       })
-      navigate('/dashboard')
+      navigate('/app/dashboard')
     } catch (error) {
       console.error('Registration failed:', error)
     } finally {

@@ -39,19 +39,19 @@ const ProfileDropdown = () => {
     {
       icon: User,
       label: "Profile",
-      href: "/profile",
+      href: "/app/profile",
       onClick: () => setIsOpen(false),
     },
     {
       icon: Calendar,
       label: "Calendar",
-      href: "/calendar",
+      href: "/app/calendar",
       onClick: () => setIsOpen(false),
     },
     {
       icon: Settings,
       label: "Preferences",
-      href: "/settings",
+      href: "/app/settings",
       onClick: () => setIsOpen(false),
     },
     {

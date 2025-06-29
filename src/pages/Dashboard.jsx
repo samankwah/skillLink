@@ -150,7 +150,7 @@ const Dashboard = () => {
                 </CardDescription>
               </div>
               <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
-                <Link to="/profile?tab=skills">View All</Link>
+                <Link to="/app/profile?tab=skills">View All</Link>
               </Button>
             </div>
           </CardHeader>
@@ -186,7 +186,7 @@ const Dashboard = () => {
                   Start building your profile by adding your skills
                 </p>
                 <Button asChild>
-                  <Link to="/profile?tab=skills">Add Skills</Link>
+                  <Link to="/app/profile?tab=skills">Add Skills</Link>
                 </Button>
               </div>
             )}
@@ -202,7 +202,7 @@ const Dashboard = () => {
                 <CardDescription>Your professional background</CardDescription>
               </div>
               <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
-                <Link to="/profile?tab=experience">View All</Link>
+                <Link to="/app/profile?tab=experience">View All</Link>
               </Button>
             </div>
           </CardHeader>

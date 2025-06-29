@@ -84,9 +84,9 @@ const ProfileDropdown = () => {
       {/* Profile Avatar Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 lg:space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="flex items-center space-x-2 lg:space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/10"
       >
-        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-md ring-2 ring-white dark:ring-gray-800">
+        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-md ring-2 ring-white dark:ring-gray-500">
           <User className="h-4 w-4 lg:h-5 lg:w-5 text-[#191961]" />
         </div>
         <div className="hidden lg:block text-left">
@@ -99,7 +99,7 @@ const ProfileDropdown = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden-x profile-dropdown">
+        <div className="absolute right-0 top-full mt-2 w-64 bg-gray-200 border border-border rounded-lg shadow-lg z-50 overflow-hidden-x profile-dropdown">
           {/* User Info Header */}
           <div className="px-4 py-3 border-b border-border bg-muted/30">
             <div className="flex items-center space-x-3">

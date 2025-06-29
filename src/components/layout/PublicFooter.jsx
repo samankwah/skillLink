@@ -16,7 +16,7 @@ const PublicFooter = () => {
     <footer className="bg-gradient-to-r from-gray-500 to-gray-500">
       {/* Main Footer Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto">
           {/* Top Section */}
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-8">
             {/* Logo and Vision */}
@@ -130,8 +130,8 @@ const PublicFooter = () => {
                   <div className="w-4 h-6 bg-gradient-to-b from-yellow-400 via-red-500 to-black"></div>
                 </div>
                 <div className="text-sm text-black">
-                  <div className="font-semibold">Ministry of Education</div>
-                  <div className="text-xs">and Development</div>
+                  <div className="font-semibold">Ghana Education</div>
+                  <div className="text-xs">Service</div>
                 </div>
               </div>
             </div>

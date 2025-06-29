@@ -116,7 +116,7 @@ const HeroCarousel = () => {
 
   return (
     <section 
-      className="relative min-h-[600px] sm:h-[75vh] lg:h-[80vh] sm:min-h-[650px] overflow-hidden"
+      className="hero-carousel relative min-h-[600px] sm:h-[75vh] lg:h-[80vh] sm:min-h-[650px] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="region"
@@ -153,17 +153,17 @@ const HeroCarousel = () => {
             <div className="text-white space-y-4 sm:space-y-6 lg:space-y-8 order-1 lg:order-1 text-center lg:text-left px-4 sm:px-0">
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                 <div>
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-medium">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-medium !text-gray-200">
                     {currentSlideData.subtitle}
                   </p>
                 </div>
                 
                 <div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
                     {currentSlideData.title.split(' ').map((word, index) => (
                       <span
                         key={index}
-                        className={index > 3 ? 'text-yellow-400' : ''}
+                        className={index > 3 ? 'text-yellow-400' : 'text-white'}
                       >
                         {word}{' '}
                       </span>
@@ -172,7 +172,7 @@ const HeroCarousel = () => {
                 </div>
 
                 <div>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0 !text-gray-200">
                     {currentSlideData.description}
                   </p>
                 </div>

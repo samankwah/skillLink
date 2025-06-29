@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import {
   Search,
   Star,
@@ -216,14 +215,7 @@ const Learn = () => {
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl font-bold text-yellow-400 mb-2">
-                  <AnimatedCounter
-                    end={parseInt(stat.number) || 0}
-                    suffix={stat.number.includes('+') ? '+' : stat.number.includes('%') ? '%' : ''}
-                    duration={3000}
-                    separator={parseInt(stat.number) >= 1000 ? "," : ""}
-                    decimals={stat.number.includes('.') ? 1 : 0}
-                    trigger={true}
-                  />
+                  {stat.number}
                 </div>
                 <div className="text-gray-300">{stat.label}</div>
               </div>

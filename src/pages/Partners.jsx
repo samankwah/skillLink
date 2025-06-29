@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import {
   Building,
   Users,
@@ -190,27 +189,14 @@ const Partners = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-              {stats.map((stat, index) => {
-                // Extract numeric value and suffix from stat.number
-                const numericValue = parseInt(
-                  stat.number.replace(/[^0-9]/g, "")
-                );
-                const suffix = stat.number.replace(/[0-9]/g, "");
-
-                return (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-yellow-400 mb-2">
-                      <AnimatedCounter
-                        end={numericValue}
-                        suffix={suffix}
-                        duration={5000}
-                        separator={numericValue >= 100 ? "," : ""}
-                      />
-                    </div>
-                    <div className="text-gray-300">{stat.label}</div>
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">
+                    {stat.number}
                   </div>
-                );
-              })}
+                  <div className="text-gray-300">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

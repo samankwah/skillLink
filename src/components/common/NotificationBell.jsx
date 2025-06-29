@@ -123,7 +123,7 @@ const NotificationBell = () => {
           />
           
           {/* Notification Panel */}
-          <div className="absolute right-0 mt-2 w-80 bg-background border border-border rounded-lg shadow-lg z-50">
+          <div className="absolute right-0 mt-2 w-80 bg-gray-400 border border-border rounded-lg shadow-lg z-50">
             <div className="p-4 border-b border-border">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold">Notifications</h3>

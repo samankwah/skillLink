@@ -151,7 +151,7 @@ const NotificationDropdown = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-50"
             onClick={() => setIsOpen(false)}
           />
 
@@ -191,7 +191,7 @@ const NotificationDropdown = () => {
 
             <CardContent className="p-0">
               {recentNotifications.length > 0 ? (
-                <div className="max-h-64 overflow-y-auto">
+                <div className="max-h-64 bg-gray-300 overflow-y-auto">
                   {recentNotifications.map((notification, index) => (
                     <div key={notification.id}>
                       <div
@@ -262,7 +262,7 @@ const NotificationDropdown = () => {
                           </div>
 
                           {!notification.isRead && (
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2" />
+                            <div className="w-2 h-2 bg-gray-600 rounded-full mt-2" />
                           )}
                         </div>
                       </div>

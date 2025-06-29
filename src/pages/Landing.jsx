@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useState, useEffect } from "react";
 import HeroCarousel from "@/components/ui/HeroCarousel";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import FadeInSection from "@/components/ui/FadeInSection";
 import ParallaxSection from "@/components/ui/ParallaxSection";
 import {
@@ -202,14 +201,9 @@ const Landing = () => {
                     <div className="w-16 h-16 bg-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                       <Icon className="w-8 h-8 text-[#191961]" />
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                      <AnimatedCounter
-                        end={stat.number}
-                        suffix={stat.suffix}
-                        duration={3000}
-                        separator={stat.number >= 1000 ? "," : ""}
-                        trigger={true}
-                      />
+                    <div className="text-4xl md:text-5xl font-bold text-yellow-400 mb-2">
+                      {stat.number.toLocaleString()}
+                      {stat.suffix}
                     </div>
                     <div className="text-gray-300 font-medium">
                       {stat.label}
@@ -449,7 +443,7 @@ const Landing = () => {
           <FadeInSection>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Ready to{" "}
-              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-orange-500">
                 transform
               </span>{" "}
               your career?

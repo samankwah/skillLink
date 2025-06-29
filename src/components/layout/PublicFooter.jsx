@@ -130,8 +130,8 @@ const PublicFooter = () => {
                   <div className="w-4 h-6 bg-gradient-to-b from-yellow-400 via-red-500 to-black"></div>
                 </div>
                 <div className="text-sm text-black">
-                  <div className="font-semibold">Ministry of Education</div>
-                  <div className="text-xs">and Development</div>
+                  <div className="font-semibold">Ghana Education</div>
+                  <div className="text-xs">Service</div>
                 </div>
               </div>
             </div>

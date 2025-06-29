@@ -153,7 +153,7 @@ const HeroCarousel = () => {
             <div className="text-white space-y-4 sm:space-y-6 lg:space-y-8 order-1 lg:order-1 text-center lg:text-left px-4 sm:px-0">
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                 <div>
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-medium !text-gray-200">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-medium">
                     {currentSlideData.subtitle}
                   </p>
                 </div>
@@ -172,7 +172,7 @@ const HeroCarousel = () => {
                 </div>
 
                 <div>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0 !text-gray-200">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0">
                     {currentSlideData.description}
                   </p>
                 </div>

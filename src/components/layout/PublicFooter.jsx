@@ -68,35 +68,35 @@ const PublicFooter = () => {
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook className="w-6 h-6 text-from-gray-950 to-gray-500" />
+                <Facebook className="w-6 h-6 text-gray-700" />
               </a>
               <a
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-6 h-6 text-from-gray-950 to-gray-500" />
+                <Linkedin className="w-6 h-6 text-gray-700" />
               </a>
               <a
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="YouTube"
               >
-                <Youtube className="w-6 h-6 text-from-gray-950 to-gray-500" />
+                <Youtube className="w-6 h-6 text-gray-700" />
               </a>
               <a
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="XTwitter"
               >
-                <Twitter className="w-6 h-6 text-from-gray-950 to-gray-500" />
+                <Twitter className="w-6 h-6 text-gray-700" />
               </a>
               <a
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram className="w-6 h-6 text-from-gray-950 to-gray-500" />
+                <Instagram className="w-6 h-6 text-gray-700" />
               </a>
             </div>
 

@@ -505,6 +505,39 @@
     color: #2d2b69 !important;
   }
 
+  /* Fix HeroCarousel text colors for production */
+  .hero-carousel .text-white {
+    color: #ffffff !important;
+  }
+
+  .hero-carousel .text-gray-200 {
+    color: #e5e7eb !important;
+  }
+
+  .hero-carousel .text-yellow-400 {
+    color: #facc15 !important;
+  }
+
+  /* Ensure HeroCarousel text is always visible on dark backgrounds */
+  .hero-carousel h1,
+  .hero-carousel h2,
+  .hero-carousel h3,
+  .hero-carousel p,
+  .hero-carousel span {
+    color: inherit !important;
+  }
+
+  /* Override any theme-specific rules for HeroCarousel */
+  .hero-carousel .text-white,
+  .dark .hero-carousel .text-white {
+    color: #ffffff !important;
+  }
+
+  .hero-carousel .text-gray-200,
+  .dark .hero-carousel .text-gray-200 {
+    color: #e5e7eb !important;
+  }
+
   /* Fix testimonial text colors specifically */
   .dark .text-gray-700 {
     color: hsl(215 20.2% 75.1%) !important;

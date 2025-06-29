@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import {
   Search,
   Star,
@@ -215,7 +216,14 @@ const Learn = () => {
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl font-bold text-yellow-400 mb-2">
-                  {stat.number}
+                  <AnimatedCounter
+                    end={parseInt(stat.number) || 0}
+                    suffix={stat.number.includes('+') ? '+' : stat.number.includes('%') ? '%' : ''}
+                    duration={3000}
+                    separator={parseInt(stat.number) >= 1000 ? "," : ""}
+                    decimals={stat.number.includes('.') ? 1 : 0}
+                    trigger={true}
+                  />
                 </div>
                 <div className="text-gray-300">{stat.label}</div>
               </div>
@@ -385,13 +393,19 @@ const Learn = () => {
       </section>
 
       {/* Learning Path Section */}
-      <section className="py-20 bg-gray-800 rounded-full opacity-30 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-gray-900 to-gray-800 relative overflow-hidden">
+        {/* Geometric Background Shapes */}
+        <div className="absolute inset-0">
+          <div className="absolute -top-40 -left-40 w-80 h-80 bg-gray-700 rounded-full opacity-30"></div>
+          <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-gray-600 rounded-full opacity-20"></div>
+          <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gray-800 rounded-full opacity-25"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Structured Learning Paths
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Follow curated learning paths designed to take you from beginner
               to expert in your chosen field.
             </p>

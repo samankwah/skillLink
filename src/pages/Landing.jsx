@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import { useState, useEffect } from 'react'
-import HeroCarousel from '@/components/ui/HeroCarousel'
-import AnimatedCounter from '@/components/ui/AnimatedCounter'
-import FadeInSection from '@/components/ui/FadeInSection'
-import ParallaxSection from '@/components/ui/ParallaxSection'
-import { 
-  BookOpen, 
-  Users, 
-  Trophy, 
-  Briefcase, 
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useState, useEffect } from "react";
+import HeroCarousel from "@/components/ui/HeroCarousel";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import FadeInSection from "@/components/ui/FadeInSection";
+import ParallaxSection from "@/components/ui/ParallaxSection";
+import {
+  BookOpen,
+  Users,
+  Trophy,
+  Briefcase,
   Star,
   ArrowRight,
   Play,
@@ -22,84 +22,91 @@ import {
   Target,
   TrendingUp,
   Award,
-  ChevronUp
-} from 'lucide-react'
+  ChevronUp,
+} from "lucide-react";
 
 const Landing = () => {
-  useDocumentTitle('SkillLink - Professional Learning & Networking Platform')
-  const [showScrollTop, setShowScrollTop] = useState(false)
+  useDocumentTitle("SkillLink - Professional Learning & Networking Platform");
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Show scroll to top button when user scrolls down
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400)
-    }
+      setShowScrollTop(window.scrollY > 400);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    })
-  }
+      behavior: "smooth",
+    });
+  };
 
   const features = [
     {
       icon: BookOpen,
-      title: 'Interactive Learning',
-      description: 'Access courses, certifications, and hands-on projects designed by industry experts.',
-      gradient: 'from-blue-500 to-purple-600'
+      title: "Interactive Learning",
+      description:
+        "Access courses, certifications, and hands-on projects designed by industry experts.",
+      gradient: "from-blue-500 to-purple-600",
     },
     {
       icon: Users,
-      title: 'Professional Network',
-      description: 'Connect with peers, mentors, and industry leaders to accelerate your career growth.',
-      gradient: 'from-green-500 to-teal-600'
+      title: "Professional Network",
+      description:
+        "Connect with peers, mentors, and industry leaders to accelerate your career growth.",
+      gradient: "from-green-500 to-teal-600",
     },
     {
       icon: Trophy,
-      title: 'Skill Certification',
-      description: 'Earn recognized certifications that validate your expertise and boost your profile.',
-      gradient: 'from-yellow-500 to-orange-600'
+      title: "Skill Certification",
+      description:
+        "Earn recognized certifications that validate your expertise and boost your profile.",
+      gradient: "from-yellow-500 to-orange-600",
     },
     {
       icon: Briefcase,
-      title: 'Career Opportunities',
-      description: 'Discover job opportunities and projects that match your skills and interests.',
-      gradient: 'from-purple-500 to-pink-600'
-    }
-  ]
+      title: "Career Opportunities",
+      description:
+        "Discover job opportunities and projects that match your skills and interests.",
+      gradient: "from-purple-500 to-pink-600",
+    },
+  ];
 
   const stats = [
-    { number: 50000, label: 'Active Learners', suffix: '+', icon: Users },
-    { number: 500, label: 'Expert Courses', suffix: '+', icon: BookOpen },
-    { number: 95, label: 'Success Rate', suffix: '%', icon: TrendingUp },
-    { number: 200, label: 'Partner Companies', suffix: '+', icon: Award }
-  ]
+    { number: 5000, label: "Active Learners", suffix: "+", icon: Users },
+    { number: 50, label: "Expert Courses", suffix: "+", icon: BookOpen },
+    { number: 95, label: "Success Rate", suffix: "%", icon: TrendingUp },
+    { number: 20, label: "Partner Companies", suffix: "+", icon: Award },
+  ];
 
   const testimonials = [
     {
-      name: 'Akosua Mensah',
-      role: 'Software Developer at Hubtel',
-      image: '/api/placeholder/64/64',
-      content: 'SkillLink transformed my career from teaching to tech. The practical courses and mentorship helped me land my dream job in fintech.'
+      name: "Akosua Mensah",
+      role: "Software Developer at Hubtel",
+      image: "/api/placeholder/64/64",
+      content:
+        "SkillLink transformed my career from teaching to tech. The practical courses and mentorship helped me land my dream job in fintech.",
     },
     {
-      name: 'Kwame Asante',
-      role: 'Product Manager at DreamOval',
-      image: '/api/placeholder/64/64',
-      content: 'The certifications I earned through SkillLink directly led to my promotion. This platform is revolutionizing professional development in Ghana.'
+      name: "Kwame Asante",
+      role: "Product Manager at DreamOval",
+      image: "/api/placeholder/64/64",
+      content:
+        "The certifications I earned through SkillLink directly led to my promotion. This platform is revolutionizing professional development in Ghana.",
     },
     {
-      name: 'Ama Osei',
-      role: 'UX Designer at Turntable',
-      image: '/api/placeholder/64/64',
-      content: 'Amazing community of Ghanaian professionals. I learned more in 6 months than I did in years of self-study. Now I mentor other women in tech.'
-    }
-  ]
+      name: "Ama Osei",
+      role: "UX Designer at Turntable",
+      image: "/api/placeholder/64/64",
+      content:
+        "Amazing community of Ghanaian professionals. I learned more in 6 months than I did in years of self-study. Now I mentor other women in tech.",
+    },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -115,61 +122,66 @@ const Landing = () => {
           <div className="absolute top-1/2 -left-20 w-64 h-64 bg-gray-700 rounded-full opacity-25"></div>
           <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-gray-800 rounded-full opacity-15"></div>
         </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection className="text-center mb-20">
             <span className="inline-block px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-medium mb-4">
               Why Choose SkillLink
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Everything you need to <span className="text-yellow-400">succeed</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Everything you need to{" "}
+              <span className="text-yellow-400">succeed</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Our comprehensive platform provides all the tools, resources, and connections 
-              you need to advance your professional journey.
+              Our comprehensive platform provides all the tools, resources, and
+              connections you need to advance your professional journey.
             </p>
           </FadeInSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {features.map((feature, index) => {
-              const Icon = feature.icon
+              const Icon = feature.icon;
               return (
-                <FadeInSection 
-                  key={index} 
+                <FadeInSection
+                  key={index}
                   delay={index * 200}
                   className="group"
                 >
                   <Card className="text-center border-none shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-gray-800/80 backdrop-blur-sm relative overflow-hidden border border-gray-700">
                     {/* Gradient overlay on hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                    
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                    ></div>
+
                     <CardContent className="pt-8 pb-6 relative z-10">
                       <h3 className="text-xl font-bold text-white mb-4 group-hover:text-yellow-400 transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-300 leading-relaxed">{feature.description}</p>
-                      
+                      <p className="text-gray-300 leading-relaxed">
+                        {feature.description}
+                      </p>
+
                       {/* Animated border on hover */}
                       <div className="absolute inset-0 rounded-lg border-2 border-transparent bg-gradient-to-r from-transparent via-[#191961]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </CardContent>
                   </Card>
                 </FadeInSection>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <ParallaxSection 
+      <ParallaxSection
         backgroundImage="/api/placeholder/1920/800"
         className="py-24"
-        speed={0.3}
+        speed={0.2}
         overlayColor="bg-[#191961]/90"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <FadeInSection className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Trusted by professionals worldwide
             </h2>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
@@ -179,10 +191,10 @@ const Landing = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
-              const Icon = stat.icon
+              const Icon = stat.icon;
               return (
-                <FadeInSection 
-                  key={index} 
+                <FadeInSection
+                  key={index}
                   delay={index * 150}
                   className="text-center group"
                 >
@@ -194,14 +206,17 @@ const Landing = () => {
                       <AnimatedCounter
                         end={stat.number}
                         suffix={stat.suffix}
-                        duration={2000}
-                        separator={stat.number >= 1000 ? ',' : ''}
+                        duration={3000}
+                        separator={stat.number >= 1000 ? "," : ""}
+                        trigger={true}
                       />
                     </div>
-                    <div className="text-gray-300 font-medium">{stat.label}</div>
+                    <div className="text-gray-300 font-medium">
+                      {stat.label}
+                    </div>
                   </div>
                 </FadeInSection>
-              )
+              );
             })}
           </div>
         </div>
@@ -223,27 +238,31 @@ const Landing = () => {
                 Learn from the Best
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Learn from <span className="text-blue-400">industry experts</span>
+                Learn from{" "}
+                <span className="text-blue-400">industry experts</span>
               </h2>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Our courses are designed and taught by professionals from top companies. 
-                Get practical, real-world knowledge that you can apply immediately.
+                Our courses are designed and taught by professionals from top
+                companies. Get practical, real-world knowledge that you can
+                apply immediately.
               </p>
-              
+
               <div className="space-y-6 mb-10">
                 {[
-                  'Expert-led video courses',
-                  'Hands-on projects and assignments', 
-                  'Industry-recognized certifications',
-                  'Peer collaboration and feedback'
+                  "Expert-led video courses",
+                  "Hands-on projects and assignments",
+                  "Industry-recognized certifications",
+                  "Peer collaboration and feedback",
                 ].map((text, index) => (
-                    <FadeInSection key={index} delay={index * 100}>
-                      <div className="flex items-center group hover:bg-blue-500/10 p-3 rounded-lg transition-all duration-300">
-                        <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-4 group-hover:scale-110 transition-transform duration-300"></div>
-                        <span className="text-gray-200 font-medium text-lg">{text}</span>
-                      </div>
-                    </FadeInSection>
-                  ))}
+                  <FadeInSection key={index} delay={index * 100}>
+                    <div className="flex items-center group hover:bg-blue-500/10 p-3 rounded-lg transition-all duration-300">
+                      <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-4 group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-gray-200 font-medium text-lg">
+                        {text}
+                      </span>
+                    </div>
+                  </FadeInSection>
+                ))}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -252,53 +271,69 @@ const Landing = () => {
                     Explore Courses
                   </Button>
                 </Link>
-                <Button variant="outline" className="w-full sm:w-auto border-gray-400 text-gray-200 hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold">
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto border-gray-400 text-gray-200 hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold"
+                >
                   View Learning Paths
                 </Button>
               </div>
             </FadeInSection>
-            
+
             <FadeInSection direction="right" className="relative">
               <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl p-8 relative overflow-hidden">
                 {/* Floating decoration */}
                 <div className="absolute top-4 right-4 w-20 h-20 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-4 left-4 w-16 h-16 bg-blue-400 rounded-full opacity-20 animate-pulse animation-delay-1000"></div>
-                
-                <div className="bg-gray-900 rounded-2xl p-8 shadow-xl relative z-10 transform hover:scale-105 transition-transform duration-500 border border-gray-600">
+
+                <div className="bg-gray-900 w-full rounded-2xl p-8 shadow-xl relative z-10 transform hover:scale-105 transition-transform duration-500 border border-gray-600">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-medium">Featured Course</span>
+                    <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-medium">
+                      Featured Course
+                    </span>
                     <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
                   </div>
-                  
-                  <h4 className="text-2xl font-bold text-white mb-3">
+
+                  <h4 className="text-2xl w-full font-bold text-white mb-3">
                     Advanced React Development
                   </h4>
-                  
+
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400 mr-2">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="text-sm text-gray-300 font-medium">(4.9) • 2,347 students</span>
+                    <span className="text-sm text-gray-300 font-medium">
+                      (4.9) • 2,347 students
+                    </span>
                   </div>
-                  
+
                   <p className="text-gray-300 mb-6 leading-relaxed">
-                    Master advanced React patterns, hooks, and performance optimization techniques used by top tech companies.
+                    Master advanced React patterns, hooks, and performance
+                    optimization techniques used by top tech companies.
                   </p>
-                  
+
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-4">
-                      <span className="text-3xl font-bold text-yellow-400">GHS 299</span>
-                      <span className="text-sm text-gray-400 line-through">GHS 599</span>
+                      <span className="text-3xl font-bold text-yellow-400">
+                        GHS 299
+                      </span>
+                      <span className="text-sm text-gray-400 line-through">
+                        GHS 599
+                      </span>
                     </div>
-                    <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm font-medium">50% OFF</span>
+                    <span className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm font-medium">
+                      50% OFF
+                    </span>
                   </div>
-                  
-                  <Button className="w-full bg-gradient-to-r from-[#191961] to-[#2d2b69] hover:from-[#2d2b69] hover:to-[#191961] text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                    Enroll Now
-                  </Button>
-                  
+
+                  <Link to="/auth/register">
+                    <Button className="w-full bg-gradient-to-r from-[#191961] to-[#2d2b69] hover:from-[#2d2b69] hover:to-[#191961] text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                      Enroll Now
+                    </Button>
+                  </Link>
+
                   <div className="mt-4 flex items-center justify-center text-sm text-gray-400">
                     <Shield className="w-4 h-4 mr-1" />
                     30-day money-back guarantee
@@ -319,17 +354,19 @@ const Landing = () => {
           <div className="absolute top-1/4 -left-24 w-64 h-64 bg-gray-800 rounded-full opacity-15"></div>
           <div className="absolute bottom-1/3 -right-24 w-72 h-72 bg-gray-800 rounded-full opacity-20"></div>
         </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection className="text-center mb-20">
             <span className="inline-block px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm font-medium mb-4">
               Success Stories
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Transforming <span className="text-purple-400">careers worldwide</span>
+              Transforming{" "}
+              <span className="text-purple-400">careers worldwide</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              See how SkillLink has helped thousands of professionals advance their careers and achieve their goals
+              See how SkillLink has helped thousands of professionals advance
+              their careers and achieve their goals
             </p>
           </FadeInSection>
 
@@ -341,7 +378,7 @@ const Landing = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-[1px] rounded-lg">
                     <div className="bg-gray-800 rounded-lg h-full w-full"></div>
                   </div>
-                  
+
                   <CardContent className="pt-8 pb-6 relative z-10">
                     <div className="flex items-center mb-6">
                       <div className="relative">
@@ -355,11 +392,15 @@ const Landing = () => {
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-bold text-white text-lg">{testimonial.name}</h4>
-                        <p className="text-purple-400 font-medium">{testimonial.role}</p>
+                        <h4 className="font-bold text-white text-lg">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-purple-400 font-medium">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
-                    
+
                     <div className="mb-4">
                       <div className="flex text-yellow-400 mb-3">
                         {[...Array(5)].map((_, i) => (
@@ -367,13 +408,17 @@ const Landing = () => {
                         ))}
                       </div>
                     </div>
-                    
+
                     <blockquote className="text-gray-300 italic text-lg leading-relaxed relative">
-                      <span className="text-4xl text-purple-300 absolute -top-2 -left-2">"</span>
+                      <span className="text-4xl text-purple-300 absolute -top-2 -left-2">
+                        "
+                      </span>
                       {testimonial.content}
-                      <span className="text-4xl text-purple-300 absolute -bottom-4 -right-2">"</span>
+                      <span className="text-4xl text-purple-300 absolute -bottom-4 -right-2">
+                        "
+                      </span>
                     </blockquote>
-                    
+
                     {/* Decorative element */}
                     <div className="mt-6 w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto"></div>
                   </CardContent>
@@ -381,7 +426,7 @@ const Landing = () => {
               </FadeInSection>
             ))}
           </div>
-          
+
           <FadeInSection className="text-center mt-16">
             <Link to="/stories">
               <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-pink-600 hover:to-purple-600 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
@@ -394,7 +439,7 @@ const Landing = () => {
       </section>
 
       {/* CTA Section */}
-      <ParallaxSection 
+      <ParallaxSection
         backgroundImage="/api/placeholder/1920/800"
         className="py-24"
         speed={0.2}
@@ -402,18 +447,26 @@ const Landing = () => {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeInSection>
-            
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Ready to <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">transform</span> your career?
+              Ready to{" "}
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                transform
+              </span>{" "}
+              your career?
             </h2>
-            
+
             <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Join thousands of professionals who are already growing their skills, expanding their networks, and achieving their career goals with SkillLink.
+              Join thousands of professionals who are already growing their
+              skills, expanding their networks, and achieving their career goals
+              with SkillLink.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
               <Link to="/auth/register">
-                <Button size="lg" className="bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-orange-400 hover:to-yellow-400 text-[#191961] font-bold text-xl px-12 py-6 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 relative overflow-hidden group">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-orange-400 hover:to-yellow-400 text-[#191961] font-bold text-xl px-12 py-6 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 relative overflow-hidden group"
+                >
                   <span className="relative z-10 flex items-center">
                     Start Learning Today
                     <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -421,39 +474,41 @@ const Landing = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Button>
               </Link>
-              
+
               <div className="flex items-center text-gray-300">
                 <span className="text-lg">or</span>
               </div>
-              
+
               <Link to="/auth/login">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-2 border-white text-white hover:bg-white hover:text-[#191961] text-xl px-12 py-6 rounded-2xl font-semibold backdrop-blur-sm bg-white/10 hover:bg-white transform hover:scale-105 transition-all duration-300"
                 >
                   Sign In
                 </Button>
               </Link>
             </div>
-            
+
             {/* Trust indicators */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 opacity-80">
               {[
-                { icon: Shield, text: 'Secure Platform' },
-                { icon: Award, text: 'Industry Certified' }, 
-                { icon: Users, text: '50K+ Students' },
-                { icon: Globe, text: 'Global Community' }
+                { icon: Shield, text: "Secure Platform" },
+                { icon: Award, text: "Industry Certified" },
+                { icon: Users, text: "50K+ Students" },
+                { icon: Globe, text: "Global Community" },
               ].map((item, index) => {
-                const Icon = item.icon
+                const Icon = item.icon;
                 return (
                   <div key={index} className="flex flex-col items-center group">
                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-white/30 transition-colors duration-300">
                       <Icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-sm font-medium text-gray-300">{item.text}</span>
+                    <span className="text-sm font-medium text-gray-300">
+                      {item.text}
+                    </span>
                   </div>
-                )
+                );
               })}
             </div>
           </FadeInSection>
@@ -471,7 +526,7 @@ const Landing = () => {
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

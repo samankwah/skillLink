@@ -12,9 +12,14 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "@/context/ThemeContext";
+import { CalendarProvider } from "@/context/CalendarContext";
+import OutlookCalendar from "@/components/ui/OutlookCalendar";
+import ErrorBoundary from "@/components/ui/ErrorBoundary";
+import Portal from "@/components/ui/Portal";
 
 const ProfileDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const dropdownRef = useRef(null);
@@ -29,6 +34,19 @@ const ProfileDropdown = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Prevent body scroll when calendar is open
+  useEffect(() => {
+    if (showCalendar) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showCalendar]);
 
   const handleLogout = () => {
     logout();
@@ -45,15 +63,15 @@ const ProfileDropdown = () => {
     {
       icon: Calendar,
       label: "Calendar",
-      href: "/app/calendar",
-      onClick: () => setIsOpen(false),
+      onClick: () => setShowCalendar(!showCalendar),
+      hasSubmenu: true,
     },
-    {
-      icon: Settings,
-      label: "Preferences",
-      href: "/app/settings",
-      onClick: () => setIsOpen(false),
-    },
+    // {
+    //   icon: Settings,
+    //   label: "Preferences",
+    //   href: "/app/settings",
+    //   onClick: () => setIsOpen(false),
+    // },
     {
       icon: theme === "dark" ? Sun : Moon,
       label: theme === "dark" ? "Light Mode" : "Dark Mode",
@@ -99,7 +117,7 @@ const ProfileDropdown = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-gray-200 border border-border rounded-lg shadow-lg z-50 overflow-hidden-x profile-dropdown">
+        <div className="absolute right-0 top-full mt-2 w-64 bg-gray-300 border-border rounded-lg shadow-lg z-[100] overflow-hidden profile-dropdown">
           {/* User Info Header */}
           <div className="px-4 py-3 border-b border-border bg-muted/30">
             <div className="flex items-center space-x-3">
@@ -161,6 +179,85 @@ const ProfileDropdown = () => {
             })}
           </div>
         </div>
+      )}
+
+      {/* Calendar Dropdown */}
+      {showCalendar && (
+        <Portal>
+          <style>
+            {`
+              .calendar-modal-overlay {
+                z-index: 2147483647 !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+              }
+              .calendar-modal-content {
+                z-index: 2147483647 !important;
+                position: relative !important;
+              }
+            `}
+          </style>
+          <div
+            className="calendar-modal-overlay fixed inset-0 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4"
+            style={{
+              zIndex: 2147483647, // Maximum z-index value
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+            }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setShowCalendar(false);
+              }
+            }}
+          >
+            <div
+              className="calendar-modal-content bg-white dark:bg-slate-800/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-200 dark:border-slate-700/50 w-full max-w-6xl h-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden relative"
+              style={{
+                zIndex: 2147483647,
+                position: "relative",
+              }}
+            >
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-600/30 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-100">
+                  Calendar
+                </h2>
+                <button
+                  onClick={() => setShowCalendar(false)}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-slate-600/50 rounded-lg transition-all duration-200 hover:scale-105"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="h-full">
+                <ErrorBoundary>
+                  <CalendarProvider>
+                    <OutlookCalendar />
+                  </CalendarProvider>
+                </ErrorBoundary>
+              </div>
+            </div>
+          </div>
+        </Portal>
       )}
     </div>
   );

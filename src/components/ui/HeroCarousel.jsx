@@ -13,6 +13,11 @@ import {
   Award
 } from 'lucide-react'
 
+// Import images
+import geminiImage from '@/assets/Gemini_Generated.jpg'
+import geminiImage2 from '@/assets/Gemini_Generated_Image.jpg'
+import womenImage from '@/assets/image-women.webp'
+
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
@@ -25,7 +30,7 @@ const HeroCarousel = () => {
       title: "Transform Your Career with Expert-Led Courses",
       subtitle: "Join 50,000+ professionals advancing their skills",
       description: "Access cutting-edge courses from industry leaders at Google, Microsoft, and Meta. Build the skills that matter most in today's job market.",
-      image: "/src/assets/Gemini_Generated.jpg",
+      image: geminiImage,
       gradient: "from-blue-600 via-purple-600 to-blue-800",
       stats: [
         { icon: Users, value: "50K+", label: "Active Learners" },
@@ -40,7 +45,7 @@ const HeroCarousel = () => {
       title: "Network with Industry Professionals",
       subtitle: "Connect, collaborate, and grow together",
       description: "Build meaningful professional relationships with peers, mentors, and industry leaders. Expand your network and unlock new opportunities.",
-      image: "/src/assets/Gemini_Generated_Image.jpg",
+      image: geminiImage2,
       gradient: "from-green-600 via-teal-600 to-blue-600",
       stats: [
         { icon: Users, value: "25K+", label: "Professionals" },
@@ -55,7 +60,7 @@ const HeroCarousel = () => {
       title: "Get Hired at Top Companies",
       subtitle: "Access exclusive job opportunities",
       description: "Connect directly with hiring managers from Fortune 500 companies. Get noticed with our industry-recognized certifications and portfolio projects.",
-      image: "/src/assets/image-women.webp",
+      image: womenImage,
       gradient: "from-purple-600 via-pink-600 to-red-600",
       stats: [
         { icon: Award, value: "78%", label: "Get Hired" },

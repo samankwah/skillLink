@@ -41,7 +41,7 @@ const News = () => {
   };
 
   const toggleArticleExpansion = (articleId) => {
-    setExpandedArticles(prev => {
+    setExpandedArticles((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(articleId)) {
         newSet.delete(articleId);
@@ -275,25 +275,26 @@ const News = () => {
                   {featuredNews.title}
                 </h2>
                 <p className="text-gray-300 mb-4 text-lg">
-                  {isFeaturedExpanded 
-                    ? featuredNews.content 
+                  {isFeaturedExpanded
+                    ? featuredNews.content
                     : featuredNews.excerpt}
                 </p>
-                {featuredNews.content && featuredNews.content.length > featuredNews.excerpt.length && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsFeaturedExpanded(!isFeaturedExpanded)}
-                    className="text-yellow-400 hover:bg-yellow-400/10 p-0 mb-4"
-                  >
-                    {isFeaturedExpanded ? "Read Less" : "Read More"}
-                    <ArrowRight 
-                      className={`ml-1 w-3 h-3 transition-transform duration-200 ${
-                        isFeaturedExpanded ? "rotate-90" : ""
-                      }`} 
-                    />
-                  </Button>
-                )}
+                {featuredNews.content &&
+                  featuredNews.content.length > featuredNews.excerpt.length && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setIsFeaturedExpanded(!isFeaturedExpanded)}
+                      className="text-yellow-400 hover:bg-yellow-400/10 p-0 mb-4"
+                    >
+                      {isFeaturedExpanded ? "Read Less" : "Read More"}
+                      <ArrowRight
+                        className={`ml-1 w-3 h-3 transition-transform duration-200 ${
+                          isFeaturedExpanded ? "rotate-90" : ""
+                        }`}
+                      />
+                    </Button>
+                  )}
                 <div className="flex items-center text-sm text-gray-400 mb-6">
                   <Calendar className="w-4 h-4 mr-2" />
                   <span className="mr-4">{formatDate(featuredNews.date)}</span>
@@ -328,10 +329,10 @@ const News = () => {
                 {filteredNews.length} articles found
               </p>
             </div>
-            <Button variant="outline" className="flex items-center border-gray-600 text-gray-200 hover:bg-gray-800">
+            {/* <Button variant="outline" className="flex items-center border-gray-600 text-gray-200 hover:bg-gray-800">
               <Filter className="w-4 h-4 mr-2" />
               Filter
-            </Button>
+            </Button> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -359,8 +360,8 @@ const News = () => {
                     {article.title}
                   </h3>
                   <p className="text-gray-300 mb-2">
-                    {expandedArticles.has(article.id) 
-                      ? article.content 
+                    {expandedArticles.has(article.id)
+                      ? article.content
                       : truncateText(article.excerpt)}
                   </p>
                   {article.content && article.content.length > 120 && (
@@ -370,7 +371,9 @@ const News = () => {
                       onClick={() => toggleArticleExpansion(article.id)}
                       className="text-yellow-400 hover:bg-yellow-400/10 p-0 text-xs mb-2"
                     >
-                      {expandedArticles.has(article.id) ? "Show Less" : "Show More"}
+                      {expandedArticles.has(article.id)
+                        ? "Show Less"
+                        : "Show More"}
                     </Button>
                   )}
 
@@ -394,9 +397,11 @@ const News = () => {
                     </div>
                     <div className="text-xs text-gray-400">
                       {article.category === "platform" && "Platform Update"}
-                      {article.category === "partnerships" && "Partnership News"}
+                      {article.category === "partnerships" &&
+                        "Partnership News"}
                       {article.category === "courses" && "Course Launch"}
-                      {article.category === "community" && "Community Milestone"}
+                      {article.category === "community" &&
+                        "Community Milestone"}
                       {article.category === "industry" && "Industry Insight"}
                     </div>
                   </div>

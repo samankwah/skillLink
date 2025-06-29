@@ -191,7 +191,7 @@ const NotificationDropdown = () => {
 
             <CardContent className="p-0">
               {recentNotifications.length > 0 ? (
-                <div className="max-h-64 bg-gray-300 overflow-y-auto">
+                <div className="max-h-64 bg-gray-200 overflow-y-auto">
                   {recentNotifications.map((notification, index) => (
                     <div key={notification.id}>
                       <div

@@ -50,11 +50,10 @@ const ParallaxSection = ({
     >
       {backgroundImage && (
         <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed"
           style={{
             backgroundImage: `url(${backgroundImage})`,
-            transform: `translateY(${offsetY}px)`,
-            willChange: 'transform'
+            backgroundAttachment: 'fixed'
           }}
         />
       )}

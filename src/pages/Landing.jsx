@@ -111,7 +111,7 @@ const Landing = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="public-page min-h-screen">
       {/* Hero Carousel */}
       <HeroCarousel />
 

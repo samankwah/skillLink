@@ -176,7 +176,7 @@ const Learn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="public-page min-h-screen bg-slate-900">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-20 relative overflow-hidden">
         {/* Geometric Background Shapes */}

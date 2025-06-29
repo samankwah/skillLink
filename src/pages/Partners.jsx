@@ -164,7 +164,7 @@ const Partners = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="public-page min-h-screen bg-gray-900">
       {/* Hero Section */}
       <section className="bg-gray-900 text-white py-20 relative overflow-hidden">
         {/* Geometric Background Shapes */}

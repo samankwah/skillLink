@@ -20,7 +20,8 @@
       "Bash(true)",
       "Bash(npm run build:*)",
       "Bash(rm:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(ss:*)"
     ],
     "deny": []
   }

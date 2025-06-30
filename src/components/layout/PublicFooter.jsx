@@ -12,6 +12,34 @@ import {
 const PublicFooter = () => {
   const currentYear = new Date().getFullYear();
 
+  // Social media URLs
+  const socialMediaLinks = {
+    facebook: "https://www.facebook.com/skilllink",
+    linkedin: "https://www.linkedin.com/company/skilllink",
+    youtube: "https://www.youtube.com/@skilllink",
+    twitter: "https://twitter.com/skilllink",
+    instagram: "https://www.instagram.com/skilllink"
+  };
+
+  // Social media sharing functionality
+  const handleSocialShare = (platform) => {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent("SkillLink - Digital Learning Platform");
+    const description = encodeURIComponent("Join SkillLink for inclusive, accessible, and secure digital learning");
+
+    const shareUrls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+      twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+      instagram: socialMediaLinks.instagram, // Instagram doesn't support direct sharing
+      youtube: socialMediaLinks.youtube
+    };
+
+    if (shareUrls[platform]) {
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+    }
+  };
+
   return (
     <footer className="bg-gradient-to-r from-gray-500 to-gray-500">
       {/* Main Footer Content */}
@@ -63,40 +91,49 @@ const PublicFooter = () => {
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
             {/* Social Media Icons */}
             <div className="flex gap-4 mb-6 sm:mb-0">
-              <a
-                href="#"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                aria-label="Facebook"
+              <button
+                onClick={() => handleSocialShare('facebook')}
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors group"
+                aria-label="Share on Facebook or visit our Facebook page"
+                title="Share on Facebook"
               >
-                <Facebook className="w-6 h-6 text-gray-700" />
+                <Facebook className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
+              </button>
+              <button
+                onClick={() => handleSocialShare('linkedin')}
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors group"
+                aria-label="Share on LinkedIn or visit our LinkedIn page"
+                title="Share on LinkedIn"
+              >
+                <Linkedin className="w-6 h-6 text-gray-700 group-hover:text-blue-500" />
+              </button>
+              <a
+                href={socialMediaLinks.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors group"
+                aria-label="Visit our YouTube channel"
+                title="Visit our YouTube channel"
+              >
+                <Youtube className="w-6 h-6 text-gray-700 group-hover:text-red-600" />
               </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                aria-label="LinkedIn"
+              <button
+                onClick={() => handleSocialShare('twitter')}
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors group"
+                aria-label="Share on Twitter or visit our Twitter page"
+                title="Share on Twitter"
               >
-                <Linkedin className="w-6 h-6 text-gray-700" />
-              </a>
+                <Twitter className="w-6 h-6 text-gray-700 group-hover:text-sky-500" />
+              </button>
               <a
-                href="#"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                aria-label="YouTube"
+                href={socialMediaLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors group"
+                aria-label="Visit our Instagram page"
+                title="Visit our Instagram page"
               >
-                <Youtube className="w-6 h-6 text-gray-700" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                aria-label="XTwitter"
-              >
-                <Twitter className="w-6 h-6 text-gray-700" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-6 h-6 text-gray-700" />
+                <Instagram className="w-6 h-6 text-gray-700 group-hover:text-pink-500" />
               </a>
             </div>
 
@@ -130,7 +167,7 @@ const PublicFooter = () => {
                   <div className="w-4 h-6 bg-gradient-to-b from-yellow-400 via-red-500 to-black"></div>
                 </div>
                 <div className="text-sm text-black">
-                  <div className="font-semibold">Ghana Education</div>
+                  <div className="font-semibold">Manuel Lartey</div>
                   <div className="text-xs">Service</div>
                 </div>
               </div>

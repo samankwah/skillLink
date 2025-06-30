@@ -12,9 +12,9 @@ import ThemeToggle from "@/components/common/ThemeToggle";
 
 const Header = ({ onMenuClick }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { user } = useAuth();
+  const { user: _user } = useAuth();
   const { performAdvancedSearch } = useSearch();
-  const { theme } = useTheme();
+  const { theme: _theme } = useTheme();
   const navigate = useNavigate();
 
   const handleSearch = async (e) => {
@@ -30,7 +30,7 @@ const Header = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="sticky top-0 z-60 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
+    <header className="fixed top-0 z-60 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
       {/* Mobile Header - Full Width */}
       <div className="lg:hidden flex items-center justify-between px-4 py-2 w-full">
         {/* Mobile Menu Button */}
@@ -52,7 +52,7 @@ const Header = ({ onMenuClick }) => {
           {/* <span className="hidden lg:block w-10 h-10 bg-gradient-to-br from-primary via-primary/90 to-secondary rounded-3xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
             <span className="text-[#191961] font-bold text-base">SL</span>
           </span> */}
-          <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#191961] flex-grow text-start">
+          <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-primary flex-grow text-start">
             SkillLink
           </span>
         </Link>

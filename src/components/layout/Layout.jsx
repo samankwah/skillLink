@@ -19,7 +19,7 @@ const Layout = () => {
       <Header onMenuClick={toggleSidebar} />
       <div className="flex w-full">
         <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
-        <main className="flex-1 w-full transition-all duration-300 ease-in-out lg:ml-64">
+        <main className="flex-1 w-full transition-all duration-300 ease-in-out lg:ml-64 pt-16 lg:pt-20">
           <div className="w-full max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 lg:py-8">
             <Outlet />
           </div>

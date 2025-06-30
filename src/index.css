@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap");
 
 /* Import custom animations */
-@import './styles/animations.css';
+@import "./styles/animations.css";
 
 @layer base {
   :root {
@@ -29,25 +29,26 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 255 255 255 / 0.1;
-    --card-foreground: 210 40% 98%;
-    --popover: 255 255 255 / 0.1;
-    --popover-foreground: 210 40% 98%;
-    --primary: 240 100% 65%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 344 100% 65%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 344 100% 65%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 255 255 255 / 0.15;
-    --input: 255 255 255 / 0.1;
-    --ring: 240 100% 65%;
+    /* Claude-inspired dark mode colors */
+    --background: 212 13% 8%;
+    --foreground: 210 11% 96%;
+    --card: 212 13% 10%;
+    --card-foreground: 210 11% 96%;
+    --popover: 212 13% 10%;
+    --popover-foreground: 210 11% 96%;
+    --primary: 220 91% 64%;
+    --primary-foreground: 220 91% 4%;
+    --secondary: 212 13% 15%;
+    --secondary-foreground: 210 11% 96%;
+    --muted: 212 13% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 220 91% 64%;
+    --accent-foreground: 220 91% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 11% 96%;
+    --border: 212 13% 18%;
+    --input: 212 13% 15%;
+    --ring: 220 91% 64%;
   }
 }
 
@@ -56,17 +57,17 @@
     border-color: hsl(var(--border));
     box-sizing: border-box;
   }
-  
+
   html {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
-  
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
     width: 100%;
@@ -74,34 +75,42 @@
     margin: 0;
     padding: 0;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'IBM Plex Serif', serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "IBM Plex Serif", serif;
     font-weight: 600;
   }
-  
+
   /* Mobile-first full width containers */
   @media (max-width: 1024px) {
     .max-w-7xl {
-      max-width: 100% !important;
+      max-width: 100%;
     }
-    
+
     .mx-auto {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      margin-left: 0;
+      margin-right: 0;
     }
-    
+
     /* Ensure mobile containers take full width */
-    main, .container {
-      width: 100% !important;
-      max-width: 100% !important;
+    main,
+    .container {
+      width: 100%;
+      max-width: 100%;
     }
-    
+
     /* Remove any horizontal margins on mobile */
-    body, html, #root {
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow-x: hidden !important;
+    body,
+    html,
+    #root {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
   }
 }
@@ -112,47 +121,55 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
-  
+
   /* Smooth theme transitions */
   * {
-    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease,
+      color 0.3s ease;
   }
-  
+
   /* Enhanced gradients for dark mode */
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--secondary))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   /* Enhanced shadows for cards in dark mode */
   .dark .shadow-sm {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   }
-  
+
   .dark .shadow-md {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
+      0 2px 4px -1px rgba(0, 0, 0, 0.3);
   }
-  
+
   .dark .shadow-lg {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4),
+      0 4px 6px -2px rgba(0, 0, 0, 0.3);
   }
-  
+
   .dark .shadow-xl {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4),
+      0 10px 10px -5px rgba(0, 0, 0, 0.3);
   }
-  
+
   /* Enhanced border styles for dark mode */
   .dark .border {
-    border-color: hsl(var(--border) / 0.8);
+    border-color: hsl(var(--border));
   }
-  
+
   /* Profile dropdown enhancements */
   .profile-dropdown {
     animation: slideDown 0.2s ease-out;
   }
-  
+
   @keyframes slideDown {
     from {
       opacity: 0;
@@ -163,359 +180,374 @@
       transform: translateY(0);
     }
   }
-  
+
   /* Ensure proper text colors in dark mode */
-  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    color: hsl(var(--foreground)) !important;
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: hsl(var(--foreground));
   }
-  
+
   .dark p {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark span {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Fix card text specifically */
   .dark [data-slot="card"] {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .card {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Override specific text classes in dark mode */
   .dark .text-lg {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .text-xl {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .text-2xl {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .text-3xl {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .text-sm {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .text-xs {
-    color: hsl(var(--muted-foreground)) !important;
+    color: hsl(var(--muted-foreground));
   }
-  
+
   .dark .font-bold {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .font-semibold {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .font-medium {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Fix button contrast in both themes */
   .btn-primary {
     background-color: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
     border-color: hsl(var(--primary));
   }
-  
+
   .btn-primary:hover {
     background-color: hsl(var(--primary) / 0.9);
     border-color: hsl(var(--primary) / 0.9);
   }
-  
+
   .btn-secondary {
     background-color: hsl(var(--secondary));
     color: hsl(var(--secondary-foreground));
     border-color: hsl(var(--secondary));
   }
-  
+
   .btn-secondary:hover {
     background-color: hsl(var(--secondary) / 0.9);
     border-color: hsl(var(--secondary) / 0.9);
   }
-  
+
   /* Fix badge colors */
   .dark .badge-primary {
     background-color: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
   }
-  
+
   .dark .badge-secondary {
     background-color: hsl(var(--secondary));
     color: hsl(var(--secondary-foreground));
   }
-  
+
   /* Enhanced badge visibility in both themes */
   .dark .bg-green-100 {
-    background-color: hsl(142 76% 20%) !important;
-    color: hsl(142 76% 80%) !important;
+    background-color: hsl(142 76% 20%);
+    color: hsl(142 76% 80%);
   }
-  
+
   .dark .text-green-800 {
-    color: hsl(142 76% 80%) !important;
+    color: hsl(142 76% 80%);
   }
-  
+
   .dark .bg-blue-100 {
-    background-color: hsl(217 91% 20%) !important;
-    color: hsl(217 91% 80%) !important;
+    background-color: hsl(217 91% 20%);
+    color: hsl(217 91% 80%);
   }
-  
+
   .dark .text-blue-800 {
-    color: hsl(217 91% 80%) !important;
+    color: hsl(217 91% 80%);
   }
-  
+
   .dark .bg-yellow-100 {
-    background-color: hsl(45 93% 25%) !important;
-    color: hsl(45 93% 85%) !important;
+    background-color: hsl(45 93% 25%);
+    color: hsl(45 93% 85%);
   }
-  
+
   .dark .text-yellow-800 {
-    color: hsl(45 93% 85%) !important;
+    color: hsl(45 93% 85%);
   }
-  
+
   .dark .bg-red-100 {
-    background-color: hsl(0 84% 25%) !important;
-    color: hsl(0 84% 85%) !important;
+    background-color: hsl(0 84% 25%);
+    color: hsl(0 84% 85%);
   }
-  
+
   .dark .text-red-800 {
-    color: hsl(0 84% 85%) !important;
+    color: hsl(0 84% 85%);
   }
-  
+
   .dark .bg-purple-100 {
-    background-color: hsl(270 91% 25%) !important;
-    color: hsl(270 91% 85%) !important;
+    background-color: hsl(270 91% 25%);
+    color: hsl(270 91% 85%);
   }
-  
+
   .dark .text-purple-800 {
-    color: hsl(270 91% 85%) !important;
+    color: hsl(270 91% 85%);
   }
-  
+
   /* Ensure links are visible */
   .dark a {
     color: hsl(var(--primary));
   }
-  
+
   .dark a:hover {
     color: hsl(var(--primary) / 0.8);
   }
-  
+
   /* Fix specific text elements */
   .dark .text-primary {
-    color: hsl(var(--primary)) !important;
+    color: hsl(var(--primary));
   }
-  
+
   .dark .text-secondary {
-    color: hsl(var(--secondary)) !important;
+    color: hsl(var(--secondary));
   }
-  
+
   .dark .text-foreground {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Fix specific component text visibility */
   .dark .text-gray-600 {
-    color: hsl(215 20.2% 65.1%) !important;
+    color: hsl(215 20.2% 65.1%);
   }
-  
+
   .dark .text-gray-700 {
-    color: hsl(215 20.2% 65.1%) !important;
+    color: hsl(215 20.2% 65.1%);
   }
-  
+
   .dark .text-gray-800 {
-    color: hsl(215 20.2% 75.1%) !important;
+    color: hsl(215 20.2% 75.1%);
   }
-  
+
   .dark .text-gray-900 {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Ensure form labels are visible */
   .dark label {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Fix table text visibility */
   .dark table {
     color: hsl(var(--foreground));
   }
-  
+
   .dark th {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark td {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Fix dropdown and select text */
   .dark select {
-    color: hsl(var(--foreground)) !important;
-    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
   }
-  
+
   .dark option {
-    color: hsl(var(--foreground)) !important;
-    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
   }
-  
+
   /* Fix placeholder text */
   .dark input::placeholder {
-    color: hsl(var(--muted-foreground)) !important;
+    color: hsl(var(--muted-foreground));
   }
-  
+
   .dark textarea::placeholder {
-    color: hsl(var(--muted-foreground)) !important;
+    color: hsl(var(--muted-foreground));
   }
-  
+
   /* Ensure proper contrast for status indicators */
   .dark .bg-green-50 {
-    background-color: hsl(142 76% 15%) !important;
-    color: hsl(142 76% 85%) !important;
+    background-color: hsl(142 76% 15%);
+    color: hsl(142 76% 85%);
   }
-  
+
   .dark .border-green-200 {
-    border-color: hsl(142 76% 30%) !important;
+    border-color: hsl(142 76% 30%);
   }
-  
+
   .dark .text-green-700 {
-    color: hsl(142 76% 80%) !important;
+    color: hsl(142 76% 80%);
   }
-  
+
   /* Additional text fixes for complete visibility */
   .dark .leading-tight {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .line-clamp-1,
   .dark .line-clamp-2,
   .dark .line-clamp-3 {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Fix card title and description visibility */
   .dark [class*="CardTitle"] {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   .dark [class*="CardDescription"] {
-    color: hsl(var(--muted-foreground)) !important;
+    color: hsl(var(--muted-foreground));
   }
-  
+
   /* Ensure buttons maintain proper text color */
   .dark button {
-    color: inherit !important;
+    color: inherit;
   }
-  
+
   /* Fix any remaining text elements */
   .dark .text-base {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
+
   /* Override any inherited colors that might interfere - but don't use global inherit */
   .dark :not(button):not([role="button"]):not(a) {
     color: unset;
   }
-  
+
   /* Ensure body text is properly set in dark mode */
   .dark body {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
-  
-  /* Glassmorphism effect for cards in dark mode */
+
+  /* Clean card styles for dark mode (Claude-like) */
   .dark .card,
   .dark [data-radix-select-content] {
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
-    border-radius: 12px !important;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
   }
-  
-  /* Enhanced glassmorphism for hover states */
+
+  /* Subtle hover states */
   .dark .card:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    transform: translateY(-2px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: hsl(0 0% 13%);
+    border: 1px solid hsl(0 0% 20%);
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
   }
-  
-  /* Glassmorphism for dropdowns and modals */
+
+  /* Clean dropdowns and modals */
   .dark .dropdown-content,
   .dark .modal-content,
   .dark .popover-content {
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
-  
-  /* Glassmorphism for buttons in dark mode */
+
+  /* Clean button styles */
   .dark .btn-glass {
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(10px) saturate(150%);
-    -webkit-backdrop-filter: blur(10px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
   }
-  
+
   .dark .btn-glass:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: hsl(0 0% 13%);
+    border: 1px solid hsl(0 0% 20%);
   }
-  
-  /* Special glassmorphism for profile dropdown */
+
+  /* Clean profile dropdown */
   .dark .profile-dropdown {
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
   /* Force dark-specific color classes to be visible */
   .dark .text-\[#191961\] {
-    color: #8b94db !important; /* Lighter version for dark mode */
+    color: hsl(var(--primary-foreground)); /* White text for dark mode */
   }
 
   .dark .text-\[#2d2b69\] {
-    color: #9ca3e8 !important; /* Lighter version for dark mode */
+    color: hsl(var(--primary-foreground)); /* White text for dark mode */
+  }
+
+  /* Sidebar specific dark mode overrides */
+  .dark nav a[aria-current="page"],
+  .dark nav a.active {
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Ensure sidebar navigation text is always white when active in dark mode */
+  .dark .bg-gradient-to-r.from-primary.to-secondary {
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Override any conflicting text colors in sidebar */
+  .dark .bg-gradient-to-r.from-primary.to-secondary * {
+    color: hsl(var(--primary-foreground));
   }
 
   /* Ensure specific landing page elements are visible in light mode */
   :not(.dark) .text-\[#191961\] {
-    color: #191961 !important;
+    color: #191961;
   }
 
   :not(.dark) .text-\[#2d2b69\] {
-    color: #2d2b69 !important;
+    color: #2d2b69;
   }
 
   /* Fix HeroCarousel text colors for production */
   .hero-carousel .text-white {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   .hero-carousel .text-gray-200 {
-    color: #e5e7eb !important;
+    color: #e5e7eb;
   }
 
   .hero-carousel .text-yellow-400 {
-    color: #facc15 !important;
+    color: #facc15;
   }
 
   /* Ensure HeroCarousel text is always visible on dark backgrounds */
@@ -524,132 +556,421 @@
   .hero-carousel h3,
   .hero-carousel p,
   .hero-carousel span {
-    color: inherit !important;
+    color: inherit;
   }
 
   /* Override any theme-specific rules for HeroCarousel */
   .hero-carousel .text-white,
   .dark .hero-carousel .text-white {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   .hero-carousel .text-gray-200,
   .dark .hero-carousel .text-gray-200 {
-    color: #e5e7eb !important;
+    color: #e5e7eb;
   }
 
   /* Global production text color fixes for all public pages */
-  
+
   /* Ensure white text is always white */
   .text-white {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   /* Ensure gray text variations are consistent */
-  .text-gray-50 { color: #f9fafb !important; }
-  .text-gray-100 { color: #f3f4f6 !important; }
-  .text-gray-200 { color: #e5e7eb !important; }
-  .text-gray-300 { color: #d1d5db !important; }
-  .text-gray-400 { color: #9ca3af !important; }
-  .text-gray-500 { color: #6b7280 !important; }
-  .text-gray-600 { color: #4b5563 !important; }
-  .text-gray-700 { color: #374151 !important; }
-  .text-gray-800 { color: #1f2937 !important; }
-  .text-gray-900 { color: #111827 !important; }
+  .text-gray-50 {
+    color: #f9fafb;
+  }
+  .text-gray-100 {
+    color: #f3f4f6;
+  }
+  .text-gray-200 {
+    color: #e5e7eb;
+  }
+  .text-gray-300 {
+    color: #d1d5db;
+  }
+  .text-gray-400 {
+    color: #9ca3af;
+  }
+  .text-gray-500 {
+    color: #6b7280;
+  }
+  .text-gray-600 {
+    color: #4b5563;
+  }
+  .text-gray-700 {
+    color: #374151;
+  }
+  .text-gray-800 {
+    color: #1f2937;
+  }
+  .text-gray-900 {
+    color: #111827;
+  }
 
   /* Ensure slate text variations are consistent */
-  .text-slate-50 { color: #f8fafc !important; }
-  .text-slate-100 { color: #f1f5f9 !important; }
-  .text-slate-200 { color: #e2e8f0 !important; }
-  .text-slate-300 { color: #cbd5e1 !important; }
-  .text-slate-400 { color: #94a3b8 !important; }
-  .text-slate-500 { color: #64748b !important; }
-  .text-slate-600 { color: #475569 !important; }
-  .text-slate-700 { color: #334155 !important; }
-  .text-slate-800 { color: #1e293b !important; }
-  .text-slate-900 { color: #0f172a !important; }
+  .text-slate-50 {
+    color: #f8fafc;
+  }
+  .text-slate-100 {
+    color: #f1f5f9;
+  }
+  .text-slate-200 {
+    color: #e2e8f0;
+  }
+  .text-slate-300 {
+    color: #cbd5e1;
+  }
+  .text-slate-400 {
+    color: #94a3b8;
+  }
+  .text-slate-500 {
+    color: #64748b;
+  }
+  .text-slate-600 {
+    color: #475569;
+  }
+  .text-slate-700 {
+    color: #334155;
+  }
+  .text-slate-800 {
+    color: #1e293b;
+  }
+  .text-slate-900 {
+    color: #0f172a;
+  }
 
   /* Ensure color text variations are consistent */
-  .text-blue-400 { color: #60a5fa !important; }
-  .text-blue-500 { color: #3b82f6 !important; }
-  .text-blue-600 { color: #2563eb !important; }
-  .text-blue-700 { color: #1d4ed8 !important; }
-  .text-blue-800 { color: #1e40af !important; }
-  .text-blue-900 { color: #1e3a8a !important; }
+  .text-blue-400 {
+    color: #60a5fa;
+  }
+  .text-blue-500 {
+    color: #3b82f6;
+  }
+  .text-blue-600 {
+    color: #2563eb;
+  }
+  .text-blue-700 {
+    color: #1d4ed8;
+  }
+  .text-blue-800 {
+    color: #1e40af;
+  }
+  .text-blue-900 {
+    color: #1e3a8a;
+  }
 
-  .text-indigo-400 { color: #818cf8 !important; }
-  .text-indigo-500 { color: #6366f1 !important; }
-  .text-indigo-600 { color: #4f46e5 !important; }
-  .text-indigo-700 { color: #4338ca !important; }
-  .text-indigo-800 { color: #3730a3 !important; }
-  .text-indigo-900 { color: #312e81 !important; }
+  .text-indigo-400 {
+    color: #818cf8;
+  }
+  .text-indigo-500 {
+    color: #6366f1;
+  }
+  .text-indigo-600 {
+    color: #4f46e5;
+  }
+  .text-indigo-700 {
+    color: #4338ca;
+  }
+  .text-indigo-800 {
+    color: #3730a3;
+  }
+  .text-indigo-900 {
+    color: #312e81;
+  }
 
-  .text-purple-400 { color: #c084fc !important; }
-  .text-purple-500 { color: #a855f7 !important; }
-  .text-purple-600 { color: #9333ea !important; }
-  .text-purple-700 { color: #7c3aed !important; }
-  .text-purple-800 { color: #6b21a8 !important; }
-  .text-purple-900 { color: #581c87 !important; }
+  .text-purple-400 {
+    color: #c084fc;
+  }
+  .text-purple-500 {
+    color: #a855f7;
+  }
+  .text-purple-600 {
+    color: #9333ea;
+  }
+  .text-purple-700 {
+    color: #7c3aed;
+  }
+  .text-purple-800 {
+    color: #6b21a8;
+  }
+  .text-purple-900 {
+    color: #581c87;
+  }
 
-  .text-green-400 { color: #4ade80 !important; }
-  .text-green-500 { color: #22c55e !important; }
-  .text-green-600 { color: #16a34a !important; }
-  .text-green-700 { color: #15803d !important; }
-  .text-green-800 { color: #166534 !important; }
-  .text-green-900 { color: #14532d !important; }
+  .text-green-400 {
+    color: #4ade80;
+  }
+  .text-green-500 {
+    color: #22c55e;
+  }
+  .text-green-600 {
+    color: #16a34a;
+  }
+  .text-green-700 {
+    color: #15803d;
+  }
+  .text-green-800 {
+    color: #166534;
+  }
+  .text-green-900 {
+    color: #14532d;
+  }
 
-  .text-yellow-400 { color: #facc15 !important; }
-  .text-yellow-500 { color: #eab308 !important; }
-  .text-yellow-600 { color: #ca8a04 !important; }
-  .text-yellow-700 { color: #a16207 !important; }
-  .text-yellow-800 { color: #854d0e !important; }
-  .text-yellow-900 { color: #713f12 !important; }
+  .text-yellow-400 {
+    color: #facc15;
+  }
+  .text-yellow-500 {
+    color: #eab308;
+  }
+  .text-yellow-600 {
+    color: #ca8a04;
+  }
+  .text-yellow-700 {
+    color: #a16207;
+  }
+  .text-yellow-800 {
+    color: #854d0e;
+  }
+  .text-yellow-900 {
+    color: #713f12;
+  }
 
-  .text-red-400 { color: #f87171 !important; }
-  .text-red-500 { color: #ef4444 !important; }
-  .text-red-600 { color: #dc2626 !important; }
-  .text-red-700 { color: #b91c1c !important; }
-  .text-red-800 { color: #991b1b !important; }
-  .text-red-900 { color: #7f1d1d !important; }
+  .text-red-400 {
+    color: #f87171;
+  }
+  .text-red-500 {
+    color: #ef4444;
+  }
+  .text-red-600 {
+    color: #dc2626;
+  }
+  .text-red-700 {
+    color: #b91c1c;
+  }
+  .text-red-800 {
+    color: #991b1b;
+  }
+  .text-red-900 {
+    color: #7f1d1d;
+  }
 
-  .text-pink-400 { color: #f472b6 !important; }
-  .text-pink-500 { color: #ec4899 !important; }
-  .text-pink-600 { color: #db2777 !important; }
-  .text-pink-700 { color: #be185d !important; }
-  .text-pink-800 { color: #9d174d !important; }
-  .text-pink-900 { color: #831843 !important; }
+  .text-pink-400 {
+    color: #f472b6;
+  }
+  .text-pink-500 {
+    color: #ec4899;
+  }
+  .text-pink-600 {
+    color: #db2777;
+  }
+  .text-pink-700 {
+    color: #be185d;
+  }
+  .text-pink-800 {
+    color: #9d174d;
+  }
+  .text-pink-900 {
+    color: #831843;
+  }
 
-  .text-orange-400 { color: #fb923c !important; }
-  .text-orange-500 { color: #f97316 !important; }
-  .text-orange-600 { color: #ea580c !important; }
-  .text-orange-700 { color: #c2410c !important; }
-  .text-orange-800 { color: #9a3412 !important; }
-  .text-orange-900 { color: #7c2d12 !important; }
+  .text-orange-400 {
+    color: #fb923c;
+  }
+  .text-orange-500 {
+    color: #f97316;
+  }
+  .text-orange-600 {
+    color: #ea580c;
+  }
+  .text-orange-700 {
+    color: #c2410c;
+  }
+  .text-orange-800 {
+    color: #9a3412;
+  }
+  .text-orange-900 {
+    color: #7c2d12;
+  }
 
   /* Ensure custom colors are consistent */
-  .text-\[#191961\] { color: #191961 !important; }
-  .text-\[#2d2b69\] { color: #2d2b69 !important; }
+  .text-\[#191961\] {
+    color: #191961;
+  }
+  .text-\[#2d2b69\] {
+    color: #2d2b69;
+  }
 
   /* Dark theme overrides for better visibility */
-  .dark .text-\[#191961\] { color: #8b94db !important; }
-  .dark .text-\[#2d2b69\] { color: #9ca3e8 !important; }
+  .dark .text-\[#191961\] {
+    color: #8b94db;
+  }
+  .dark .text-\[#2d2b69\] {
+    color: #9ca3e8;
+  }
 
   /* Ensure all public page elements have proper contrast */
-  .public-page .text-white { color: #ffffff !important; }
-  .public-page .text-gray-200 { color: #e5e7eb !important; }
-  .public-page .text-gray-300 { color: #d1d5db !important; }
+  .public-page .text-white {
+    color: #ffffff;
+  }
+  .public-page .text-gray-200 {
+    color: #e5e7eb;
+  }
+  .public-page .text-gray-300 {
+    color: #d1d5db;
+  }
 
   /* Fix testimonial text colors specifically */
   .dark .text-gray-700 {
-    color: hsl(215 20.2% 75.1%) !important;
+    color: hsl(215 20.2% 75.1%);
   }
 
   /* Fix any remaining white text on white background issues */
   .dark .text-white {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   :not(.dark) .text-white {
-    color: #ffffff !important;
+    color: #ffffff;
+  }
+
+  /* CLAUDE-INSPIRED DARK MODE STYLING */
+
+  /* Clean default text colors */
+  .dark {
+    color: hsl(var(--foreground));
+  }
+
+  .dark body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Clean card styling */
+  .dark .card {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Interactive elements */
+  .dark button {
+    color: hsl(var(--foreground));
+  }
+
+  .dark button:hover {
+    background-color: hsl(var(--muted));
+  }
+
+  /* Primary actions */
+  .dark .bg-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .dark .bg-secondary {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+
+  /* Input elements */
+  .dark input,
+  .dark textarea,
+  .dark select {
+    background-color: hsl(var(--input));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .dark input:focus,
+  .dark textarea:focus,
+  .dark select:focus {
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+  }
+
+  /* Quiz selection highlighting */
+  .dark .border-primary {
+    border-color: hsl(var(--primary));
+  }
+
+  .dark .bg-primary\/5 {
+    background-color: hsl(var(--primary) / 0.05);
+  }
+
+  .dark .bg-primary\/10 {
+    background-color: hsl(var(--primary) / 0.1);
+  }
+
+  /* Badge colors for dark mode */
+  .dark .bg-green-100 {
+    background-color: hsl(142 76% 20%);
+  }
+
+  .dark .text-green-800 {
+    color: hsl(142 76% 80%);
+  }
+
+  .dark .bg-blue-100 {
+    background-color: hsl(217 91% 20%);
+  }
+
+  .dark .text-blue-800 {
+    color: hsl(217 91% 80%);
+  }
+
+  .dark .bg-yellow-100 {
+    background-color: hsl(45 93% 25%);
+  }
+
+  .dark .text-yellow-800 {
+    color: hsl(45 93% 85%);
+  }
+
+  .dark .bg-red-100 {
+    background-color: hsl(0 84% 25%);
+  }
+
+  .dark .text-red-800 {
+    color: hsl(0 84% 85%);
+  }
+
+  .dark .bg-purple-100 {
+    background-color: hsl(270 91% 25%);
+  }
+
+  .dark .text-purple-800 {
+    color: hsl(270 91% 85%);
+  }
+
+  .dark .bg-orange-100 {
+    background-color: hsl(25 95% 25%);
+  }
+
+  .dark .text-orange-800 {
+    color: hsl(25 95% 85%);
+  }
+
+  .dark .bg-gray-100 {
+    background-color: hsl(var(--muted));
+  }
+
+  .dark .text-gray-800 {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Muted text */
+  .dark .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Links */
+  .dark a {
+    color: hsl(var(--primary));
+  }
+
+  .dark a:hover {
+    color: hsl(var(--primary) / 0.8);
   }
 }

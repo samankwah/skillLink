@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -21,18 +22,123 @@ import {
   Award,
   BookOpen,
   Play,
+  Check,
+  UserPlus,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useProfile } from "@/context/ProfileContext";
 import { useLMS } from "@/context/LMSContext";
+import { useConnections } from "@/context/ConnectionsContext";
+import { useNotifications } from "@/context/NotificationContext";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Dashboard = () => {
   const { user } = useAuth();
   const { profile, skills, experience, isLoading } = useProfile();
-  const { courses, enrolledCourses, certificates } = useLMS();
-  
+  const { courses, enrolledCourses, certificates, continueLesson } = useLMS();
+  const { sendConnectionRequest } = useConnections();
+  const { addNotification } = useNotifications();
+  const navigate = useNavigate();
+
+  const [connectedUsers, setConnectedUsers] = useState(new Set());
+  const [isConnecting, setIsConnecting] = useState(false);
+
   useDocumentTitle("Dashboard");
+
+  // Mock recommended connections data
+  const recommendedConnections = [
+    {
+      id: 1,
+      name: "Alice Miller",
+      title: "UI/UX Designer",
+      skills: ["Design", "Figma"],
+      avatar: "AM",
+    },
+    {
+      id: 2,
+      name: "Robert Taylor",
+      title: "Data Scientist",
+      skills: ["Python", "ML"],
+      avatar: "RT",
+    },
+    {
+      id: 3,
+      name: "Lisa Wong",
+      title: "Product Manager",
+      skills: ["Strategy", "Agile"],
+      avatar: "LW",
+    },
+  ];
+
+  // Handler functions for button interactions
+  const handleConnect = async (userId, userName) => {
+    setIsConnecting(true);
+    try {
+      // Check if user is already connected
+      if (connectedUsers.has(userId)) {
+        addNotification({
+          type: "info",
+          message: `You are already connected with ${userName}`,
+        });
+        // Navigate to connections page to view existing connections
+        setTimeout(() => navigate("/app/connections"), 1000);
+        return;
+      }
+
+      // Send connection request
+      await sendConnectionRequest(userId);
+
+      // Update local state
+      setConnectedUsers((prev) => new Set([...prev, userId]));
+
+      // Show success notification
+      addNotification({
+        type: "success",
+        message: `Connection request sent to ${userName}`,
+      });
+
+      // Navigate to connections page after successful connection
+      setTimeout(() => navigate("/app/connections"), 1500);
+    } catch (error) {
+      addNotification({
+        type: "error",
+        message: "Failed to send connection request. Please try again.",
+      });
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  const handleContinueLearning = async (courseId) => {
+    try {
+      // Continue the course lesson
+      await continueLesson(courseId);
+
+      // Navigate to course detail page for learning
+      navigate(`/app/course/${courseId}`);
+
+      addNotification({
+        type: "success",
+        message: "Resuming your learning session",
+      });
+    } catch (error) {
+      addNotification({
+        type: "error",
+        message: "Failed to continue lesson. Please try again.",
+      });
+    }
+  };
+
+  const handleViewCourse = (courseId) => {
+    navigate(`/app/courses/${courseId}`);
+  };
+
+  const handleQuickAction = (action) => {
+    addNotification({
+      type: "info",
+      message: `Navigating to ${action}...`,
+    });
+  };
 
   const getInitials = (firstName, lastName) => {
     return `${firstName?.charAt(0) || ""}${
@@ -86,11 +192,15 @@ const Dashboard = () => {
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Total Skills</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Total Skills
+            </CardTitle>
             <Lightbulb className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl sm:text-2xl font-bold">{skills?.length || 0}</div>
+            <div className="text-xl sm:text-2xl font-bold">
+              {skills?.length || 0}
+            </div>
             <p className="text-xs text-muted-foreground">
               {skills?.length > 0
                 ? "+2 from last month"
@@ -101,7 +211,9 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Connections</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Connections
+            </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -114,7 +226,9 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Profile Views</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Profile Views
+            </CardTitle>
             <Eye className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -127,7 +241,9 @@ const Dashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Skill Match</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Skill Match
+            </CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -149,7 +265,12 @@ const Dashboard = () => {
                   Most endorsed and experienced skills
                 </CardDescription>
               </div>
-              <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-xs sm:text-sm"
+                asChild
+              >
                 <Link to="/app/profile?tab=skills">View All</Link>
               </Button>
             </div>
@@ -201,7 +322,12 @@ const Dashboard = () => {
                 <CardTitle>Work Experience</CardTitle>
                 <CardDescription>Your professional background</CardDescription>
               </div>
-              <Button variant="outline" size="sm" className="text-xs sm:text-sm" asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-xs sm:text-sm"
+                asChild
+              >
                 <Link to="/app/profile?tab=experience">View All</Link>
               </Button>
             </div>
@@ -237,7 +363,7 @@ const Dashboard = () => {
                   Showcase your professional background
                 </p>
                 <Button asChild>
-                  <Link to="/profile?tab=experience">Add Experience</Link>
+                  <Link to="/app/profile?tab=experience">Add Experience</Link>
                 </Button>
               </div>
             )}
@@ -287,8 +413,12 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <Button variant="outline" className="w-full text-xs sm:text-sm" asChild>
-              <Link to="/activity">View All Activity</Link>
+            <Button
+              variant="outline"
+              className="w-full text-xs sm:text-sm"
+              asChild
+            >
+              <Link to="/app/activity">View All Activity</Link>
             </Button>
           </CardContent>
         </Card>
@@ -302,81 +432,62 @@ const Dashboard = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
-                  <AvatarFallback>AM</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-xs sm:text-sm font-medium line-clamp-1">
-                    Alice Miller
-                  </p>
-                  <p className="text-xs text-muted-foreground line-clamp-1">
-                    UI/UX Designer
-                  </p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Badge variant="outline" className="text-xs py-0">
-                      Design
-                    </Badge>
-                    <Badge variant="outline" className="text-xs py-0">
-                      Figma
-                    </Badge>
+            {recommendedConnections.map((connection) => (
+              <div
+                key={connection.id}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
+                    <AvatarFallback>{connection.avatar}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="text-xs sm:text-sm font-medium line-clamp-1">
+                      {connection.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground line-clamp-1">
+                      {connection.title}
+                    </p>
+                    <div className="flex items-center gap-1 mt-1">
+                      {connection.skills.map((skill, index) => (
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs py-0"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 </div>
+                <Button
+                  size="sm"
+                  className="text-xs sm:text-sm px-2 sm:px-3"
+                  onClick={() => handleConnect(connection.id, connection.name)}
+                  disabled={isConnecting || connectedUsers.has(connection.id)}
+                >
+                  {connectedUsers.has(connection.id) ? (
+                    <>
+                      <Check className="w-3 h-3 mr-1" />
+                      Connected
+                    </>
+                  ) : (
+                    <>
+                      <UserPlus className="w-3 h-3 mr-1" />
+                      Connect
+                    </>
+                  )}
+                </Button>
               </div>
-              <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3">Connect</Button>
-            </div>
+            ))}
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
-                  <AvatarFallback>RT</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-xs sm:text-sm font-medium line-clamp-1">
-                    Robert Taylor
-                  </p>
-                  <p className="text-xs text-muted-foreground line-clamp-1">
-                    Data Scientist
-                  </p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Badge variant="outline" className="text-xs py-0">
-                      Python
-                    </Badge>
-                    <Badge variant="outline" className="text-xs py-0">
-                      ML
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-              <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3">Connect</Button>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
-                  <AvatarFallback>LW</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-xs sm:text-sm font-medium line-clamp-1">Lisa Wong</p>
-                  <p className="text-xs text-muted-foreground line-clamp-1">
-                    Product Manager
-                  </p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Badge variant="outline" className="text-xs py-0">
-                      Strategy
-                    </Badge>
-                    <Badge variant="outline" className="text-xs py-0">
-                      Agile
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-              <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3">Connect</Button>
-            </div>
-
-            <Button variant="outline" className="w-full text-xs sm:text-sm" asChild>
-              <Link to="/connections">
+            <Button
+              variant="outline"
+              className="w-full text-xs sm:text-sm"
+              asChild
+            >
+              <Link to="/app/connections">
                 <Users className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                 Explore Connections
               </Link>
@@ -395,7 +506,7 @@ const Dashboard = () => {
                 <CardDescription>Pick up where you left off</CardDescription>
               </div>
               <Button variant="outline" size="sm" asChild>
-                <Link to="/courses">View All</Link>
+                <Link to="/app/courses">View All</Link>
               </Button>
             </div>
           </CardHeader>
@@ -418,8 +529,12 @@ const Dashboard = () => {
                     <span className="text-xs text-muted-foreground">65%</span>
                   </div>
                 </div>
-                <Button size="sm" className="text-xs sm:text-sm px-2 sm:px-3" asChild>
-                  <Link to={`/courses/${course.id}`}>Continue</Link>
+                <Button
+                  size="sm"
+                  className="text-xs sm:text-sm px-2 sm:px-3"
+                  onClick={() => handleContinueLearning(course.id)}
+                >
+                  Continue
                 </Button>
               </div>
             ))}
@@ -438,7 +553,7 @@ const Dashboard = () => {
               </CardDescription>
             </div>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/courses">Browse All</Link>
+              <Link to="/app/courses">Browse All</Link>
             </Button>
           </div>
         </CardHeader>
@@ -461,8 +576,12 @@ const Dashboard = () => {
                   </p>
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary">{course.level}</Badge>
-                    <Button size="sm" variant="outline" asChild>
-                      <Link to={`/courses/${course.id}`}>View</Link>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleViewCourse(course.id)}
+                    >
+                      View
                     </Button>
                   </div>
                 </div>
@@ -482,9 +601,10 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Button
               className="h-auto p-4 flex flex-col items-center space-y-2 min-h-[72px]"
+              onClick={() => handleQuickAction("Browse Courses")}
               asChild
             >
-              <Link to="/courses">
+              <Link to="/app/courses">
                 <BookOpen className="h-5 w-5 md:h-6 md:w-6" />
                 <span className="text-sm md:text-base">Browse Courses</span>
               </Link>
@@ -492,9 +612,10 @@ const Dashboard = () => {
             <Button
               variant="outline"
               className="h-auto p-4 flex flex-col items-center space-y-2 min-h-[72px]"
+              onClick={() => handleQuickAction("Manage Skills")}
               asChild
             >
-              <Link to="/profile?tab=skills">
+              <Link to="/app/profile?tab=skills">
                 <Lightbulb className="h-5 w-5 md:h-6 md:w-6" />
                 <span className="text-sm md:text-base">Manage Skills</span>
               </Link>
@@ -502,9 +623,10 @@ const Dashboard = () => {
             <Button
               variant="outline"
               className="h-auto p-4 flex flex-col items-center space-y-2 min-h-[72px]"
+              onClick={() => handleQuickAction("Send Message")}
               asChild
             >
-              <Link to="/messages">
+              <Link to="/app/messages">
                 <MessageCircle className="h-5 w-5 md:h-6 md:w-6" />
                 <span className="text-sm md:text-base">Send Message</span>
               </Link>
@@ -512,9 +634,10 @@ const Dashboard = () => {
             <Button
               variant="outline"
               className="h-auto p-4 flex flex-col items-center space-y-2 min-h-[72px]"
+              onClick={() => handleQuickAction("Browse Jobs")}
               asChild
             >
-              <Link to="/jobs">
+              <Link to="/app/jobs">
                 <Briefcase className="h-5 w-5 md:h-6 md:w-6" />
                 <span className="text-sm md:text-base">Browse Jobs</span>
               </Link>

@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed top-16 lg:top-20 left-0 z-50 w-64 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] overflow-y-autobg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-r shadow-sm transition-transform duration-300 ease-in-out",
+          "fixed top-16 lg:top-20 left-0 z-50 w-64 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] overflow-y-auto bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-r shadow-sm transition-transform duration-300 ease-in-out",
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
@@ -58,8 +58,8 @@ const Sidebar = ({ isOpen, onClose }) => {
                   cn(
                     "flex items-center px-4 py-3 text-sm font-medium rounded-3xl transition-all duration-200",
                     isActive
-                      ? "bg-gradient-to-r from-primary to-secondary text-[#191961] shadow-lg transform scale-105"
-                      : "text-muted-foreground hover:text-primary hover:bg-muted/50 hover:transform hover:scale-105"
+                      ? "bg-gradient-to-r from-primary to-secondary text-primary shadow-lg transform scale-105"
+                      : "hover:text-primary hover:bg-muted/50 hover:transform hover:scale-105"
                   )
                 }
               >
@@ -76,9 +76,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 Skill Match
               </h3>
               <div className="flex items-center justify-between">
-                <span className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#191961]">
-                  85%
-                </span>
+                <span className="text-3xl font-bold text-primary">85%</span>
                 <span className="text-xs text-muted-foreground">This week</span>
               </div>
             </div>

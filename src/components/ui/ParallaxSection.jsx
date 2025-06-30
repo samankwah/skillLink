@@ -8,18 +8,12 @@ const ParallaxSection = ({
   overlay = true,
   overlayColor = 'bg-black/50'
 }) => {
-  const [offsetY, setOffsetY] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const elementRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (elementRef.current && isVisible) {
-        const rect = elementRef.current.getBoundingClientRect()
-        const scrolled = window.pageYOffset
-        const parallax = scrolled * speed
-        setOffsetY(parallax)
-      }
+      // Scroll handler can be used for future parallax implementations
     }
 
     const observer = new IntersectionObserver(

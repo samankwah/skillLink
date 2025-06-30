@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { 
-  Bell, 
-  Check, 
-  X, 
-  MessageCircle, 
-  Users, 
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Bell,
+  Check,
+  X,
+  MessageCircle,
+  Users,
   Eye,
   Trash2,
-  CheckCheck
-} from 'lucide-react'
-import { useNotifications } from '@/context/NotificationContext'
+  CheckCheck,
+} from "lucide-react";
+import { useNotifications } from "@/context/NotificationContext";
 
 const NotificationBell = () => {
   const {
@@ -20,80 +20,80 @@ const NotificationBell = () => {
     unreadCount,
     markAsRead,
     markAllAsRead,
-    deleteNotification
-  } = useNotifications()
+    deleteNotification,
+  } = useNotifications();
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp)
-    const now = new Date()
-    const diffInMinutes = (now - date) / (1000 * 60)
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffInMinutes = (now - date) / (1000 * 60);
 
     if (diffInMinutes < 1) {
-      return 'now'
+      return "now";
     } else if (diffInMinutes < 60) {
-      return `${Math.floor(diffInMinutes)}m ago`
+      return `${Math.floor(diffInMinutes)}m ago`;
     } else if (diffInMinutes < 1440) {
-      return `${Math.floor(diffInMinutes / 60)}h ago`
+      return `${Math.floor(diffInMinutes / 60)}h ago`;
     } else {
-      return `${Math.floor(diffInMinutes / 1440)}d ago`
+      return `${Math.floor(diffInMinutes / 1440)}d ago`;
     }
-  }
+  };
 
   const getNotificationIcon = (type) => {
     switch (type) {
-      case 'connection_request':
-        return <Users className="w-4 h-4 text-blue-500" />
-      case 'message':
-        return <MessageCircle className="w-4 h-4 text-green-500" />
-      case 'connection_accepted':
-        return <Check className="w-4 h-4 text-green-500" />
-      case 'profile_view':
-        return <Eye className="w-4 h-4 text-purple-500" />
+      case "connection_request":
+        return <Users className="w-4 h-4 text-blue-500" />;
+      case "message":
+        return <MessageCircle className="w-4 h-4 text-green-500" />;
+      case "connection_accepted":
+        return <Check className="w-4 h-4 text-green-500" />;
+      case "profile_view":
+        return <Eye className="w-4 h-4 text-purple-500" />;
       default:
-        return <Bell className="w-4 h-4 text-gray-500" />
+        return <Bell className="w-4 h-4 text-gray-500" />;
     }
-  }
+  };
 
   const handleNotificationClick = async (notification) => {
     if (!notification.isRead) {
-      await markAsRead(notification.id)
+      await markAsRead(notification.id);
     }
-    
+
     // Handle navigation based on notification type
     switch (notification.type) {
-      case 'connection_request':
+      case "connection_request":
         // Navigate to connections page
-        window.location.href = '/connections?tab=requests'
-        break
-      case 'message':
+        window.location.href = "/connections?tab=requests";
+        break;
+      case "message":
         // Navigate to messages
-        window.location.href = '/messages'
-        break
-      case 'connection_accepted':
+        window.location.href = "/messages";
+        break;
+      case "connection_accepted":
         // Navigate to connections
-        window.location.href = '/connections'
-        break
-      case 'profile_view':
+        window.location.href = "/connections";
+        break;
+      case "profile_view":
         // Navigate to profile
-        window.location.href = '/profile'
-        break
+        window.location.href = "/profile";
+        break;
       default:
-        break
+        break;
     }
-    
-    setIsOpen(false)
-  }
+
+    setIsOpen(false);
+  };
 
   const handleMarkAllAsRead = async () => {
-    await markAllAsRead()
-  }
+    await markAllAsRead();
+  };
 
   const handleDeleteNotification = async (e, notificationId) => {
-    e.stopPropagation()
-    await deleteNotification(notificationId)
-  }
+    e.stopPropagation();
+    await deleteNotification(notificationId);
+  };
 
   return (
     <div className="relative">
@@ -109,7 +109,7 @@ const NotificationBell = () => {
             variant="destructive"
             className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs flex items-center justify-center"
           >
-            {unreadCount > 99 ? '99+' : unreadCount}
+            {unreadCount > 99 ? "99+" : unreadCount}
           </Badge>
         )}
       </Button>
@@ -121,9 +121,9 @@ const NotificationBell = () => {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Notification Panel */}
-          <div className="absolute right-0 mt-2 w-80 bg-gray-400 border border-border rounded-lg shadow-lg z-50">
+          <div className="absolute right-0 mt-2 w-80 bg-gray-300 border border-border rounded-lg shadow-lg z-50">
             <div className="p-4 border-b border-border">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold">Notifications</h3>
@@ -148,18 +148,22 @@ const NotificationBell = () => {
                     key={notification.id}
                     onClick={() => handleNotificationClick(notification)}
                     className={`p-4 border-b border-border last:border-b-0 cursor-pointer hover:bg-accent/50 transition-colors ${
-                      !notification.isRead ? 'bg-accent/20' : ''
+                      !notification.isRead ? "bg-accent/20" : ""
                     }`}
                   >
                     <div className="flex items-start space-x-3">
                       <div className="flex-shrink-0 mt-1">
                         {getNotificationIcon(notification.type)}
                       </div>
-                      
+
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <p className={`text-sm ${!notification.isRead ? 'font-medium' : ''}`}>
+                            <p
+                              className={`text-sm ${
+                                !notification.isRead ? "font-medium" : ""
+                              }`}
+                            >
                               {notification.title}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">
@@ -169,7 +173,7 @@ const NotificationBell = () => {
                               {formatTimestamp(notification.timestamp)}
                             </p>
                           </div>
-                          
+
                           <div className="flex items-center space-x-1 ml-2">
                             {!notification.isRead && (
                               <div className="w-2 h-2 bg-blue-500 rounded-full" />
@@ -177,7 +181,9 @@ const NotificationBell = () => {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={(e) => handleDeleteNotification(e, notification.id)}
+                              onClick={(e) =>
+                                handleDeleteNotification(e, notification.id)
+                              }
                               className="p-1 h-6 w-6"
                             >
                               <Trash2 className="w-3 h-3" />
@@ -192,7 +198,9 @@ const NotificationBell = () => {
                 <div className="p-8 text-center text-muted-foreground">
                   <Bell className="w-12 h-12 mx-auto mb-4 opacity-50" />
                   <p>No notifications yet</p>
-                  <p className="text-xs mt-1">We'll notify you when something happens</p>
+                  <p className="text-xs mt-1">
+                    We'll notify you when something happens
+                  </p>
                 </div>
               )}
             </div>
@@ -204,8 +212,8 @@ const NotificationBell = () => {
                   size="sm"
                   className="w-full"
                   onClick={() => {
-                    window.location.href = '/notifications'
-                    setIsOpen(false)
+                    window.location.href = "/notifications";
+                    setIsOpen(false);
                   }}
                 >
                   View all notifications
@@ -216,7 +224,7 @@ const NotificationBell = () => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default NotificationBell
+export default NotificationBell;

@@ -80,7 +80,7 @@ const HeroCarousel = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }, [slides.length])
 
-  const goToSlide = useCallback((index) => {
+  const _goToSlide = useCallback((index) => {
     setCurrentSlide(index)
   }, [])
 

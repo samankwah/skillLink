@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
 import {
   ChevronLeft,
   ChevronRight,
@@ -29,10 +29,10 @@ const OutlookCalendar = () => {
     currentDate = new Date(),
     view = 'week',
     calendars = [],
-    getVisibleEvents = () => [],
+    _getVisibleEvents = () => [],
     getEventsForDate = () => [],
-    getEventsForWeek = () => [],
-    getEventsForMonth = () => [],
+    _getEventsForWeek = () => [],
+    _getEventsForMonth = () => [],
     setView = () => {},
     navigateDate = () => {},
     goToToday = () => {},
@@ -72,9 +72,8 @@ const OutlookCalendar = () => {
     const year = date.getFullYear()
     const month = date.getMonth()
     const firstDay = new Date(year, month, 1)
-    const lastDay = new Date(year, month + 1, 0)
     const startDate = new Date(firstDay)
-    const endDate = new Date(lastDay)
+    const endDate = new Date(year, month + 1, 0)
     
     // Adjust to start from Monday
     const startDay = firstDay.getDay()

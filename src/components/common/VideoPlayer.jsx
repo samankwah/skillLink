@@ -16,7 +16,6 @@ const VideoPlayer = ({
   lessonTitle, 
   onProgress, 
   onComplete, 
-  autoPlay = false,
   showControls = true 
 }) => {
   const videoRef = useRef(null)
@@ -25,7 +24,7 @@ const VideoPlayer = ({
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(1)
   const [isMuted, setIsMuted] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isFullscreen, _setIsFullscreen] = useState(false)
   const [playbackSpeed, setPlaybackSpeed] = useState(1)
   const [hasStarted, setHasStarted] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
@@ -127,10 +126,10 @@ const VideoPlayer = ({
 
     if (!document.fullscreenElement) {
       video.requestFullscreen()
-      setIsFullscreen(true)
+      _setIsFullscreen(true)
     } else {
       document.exitFullscreen()
-      setIsFullscreen(false)
+      _setIsFullscreen(false)
     }
   }
 

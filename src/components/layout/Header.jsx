@@ -53,7 +53,7 @@ const Header = ({ onMenuClick }) => {
             <span className="text-[#191961] font-bold text-base">SL</span>
           </span> */}
           <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-primary flex-grow text-start">
-            SkillLink
+            Skill
           </span>
         </Link>
 
@@ -82,7 +82,7 @@ const Header = ({ onMenuClick }) => {
               <span className="text-[#191961] font-bold text-lg">SL</span>
             </div>
             <span className="font-bold text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#191961]">
-              SkillLink
+              Skill
             </span>
           </Link>
           {/* Placeholder for Gmail-like App Menu (e.g., Grid Icon) - Add if needed */}

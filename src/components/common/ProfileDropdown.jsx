@@ -105,7 +105,7 @@ const ProfileDropdown = () => {
         className="flex items-center space-x-2 lg:space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/10"
       >
         <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-md ring-2 ring-white">
-          <User className="h-4 w-4 lg:h-5 lg:w-5 text-[#191961]" />
+          <User className="h-4 w-4 lg:h-5 lg:w-5 text-primary" />
         </div>
         <div className="hidden lg:block text-left">
           <p className="text-sm font-semibold text-foreground">
@@ -226,7 +226,7 @@ const ProfileDropdown = () => {
               }}
             >
               <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-600/30 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-100">
+                <h2 className="text-xl font-semibold cursor-pointer text-gray-900 dark:text-slate-100">
                   Calendar
                 </h2>
                 <button

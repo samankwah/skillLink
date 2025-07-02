@@ -57,15 +57,15 @@ const NotificationDropdown = () => {
   const getNotificationColor = (type) => {
     switch (type) {
       case "connection_request":
-        return "text-blue-500";
+        return "text-blue-600 dark:text-blue-400";
       case "messages":
-        return "text-green-500";
+        return "text-green-600 dark:text-green-400";
       case "achievement":
-        return "text-yellow-500";
+        return "text-yellow-600 dark:text-yellow-400";
       case "system":
-        return "text-purple-500";
+        return "text-purple-600 dark:text-purple-400";
       default:
-        return "text-gray-500";
+        return "text-muted-foreground";
     }
   };
 
@@ -129,7 +129,7 @@ const NotificationDropdown = () => {
   const recentNotifications = notifications.slice(0, 8);
 
   return (
-    <div className="relative bg-amber-300">
+    <div className="relative">
       <Button
         variant="ghost"
         size="sm"
@@ -151,12 +151,12 @@ const NotificationDropdown = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-50"
+            className="fixed inset-0 z-[998]"
             onClick={() => setIsOpen(false)}
           />
 
           {/* Dropdown */}
-          <Card className="absolute right-0 top-full mt-2 w-80 z-50 max-h-96 overflow-hidden">
+          <Card className="absolute right-0 top-full mt-2 w-64 bg-gray-[#212121] border-border rounded-lg shadow-lg z-[100] overflow-hidden notification-dropdown">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg">Notifications</CardTitle>
@@ -191,12 +191,12 @@ const NotificationDropdown = () => {
 
             <CardContent className="p-0">
               {recentNotifications.length > 0 ? (
-                <div className="max-h-64 bg-gray-200 overflow-y-auto">
+                <div className="max-h-64 overflow-y-auto">
                   {recentNotifications.map((notification, index) => (
                     <div key={notification.id}>
                       <div
-                        className={`p-4 hover:bg-accent/50 cursor-pointer transition-colors ${
-                          !notification.isRead ? "bg-accent/20" : ""
+                        className={`p-4 hover:bg-accent/90 cursor-pointer transition-colors ${
+                          !notification.isRead ? "bg-accent/50" : ""
                         }`}
                         onClick={() => handleNotificationClick(notification)}
                       >
@@ -262,7 +262,7 @@ const NotificationDropdown = () => {
                           </div>
 
                           {!notification.isRead && (
-                            <div className="w-2 h-2 bg-gray-600 rounded-full mt-2" />
+                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2" />
                           )}
                         </div>
                       </div>

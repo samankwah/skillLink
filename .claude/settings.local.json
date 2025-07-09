@@ -22,7 +22,9 @@
       "Bash(rm:*)",
       "Bash(rg:*)",
       "Bash(ss:*)",
-      "Bash(timeout 30s npm run build)"
+      "Bash(timeout 30s npm run build)",
+      "Bash(git checkout:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

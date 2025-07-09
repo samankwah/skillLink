@@ -45,11 +45,14 @@ import Legal from "./pages/Legal";
 import ProtectedRoute, {
   PublicRoute,
 } from "./components/common/ProtectedRoute";
+import ScrollToTop from "./components/common/ScrollToTop";
+import { ToastProvider } from "./components/ui/Toast";
 
 function App() {
   return (
     <ThemeProvider>
-      <AuthProvider>
+      <ToastProvider>
+        <AuthProvider>
         <ProfileProvider>
           <ConnectionsProvider>
             <MessagingProvider>
@@ -60,6 +63,7 @@ function App() {
                       <LMSProvider>
                         <ReferralProvider>
                           <Router>
+                            <ScrollToTop />
                             <Routes>
                               {/* Public Routes */}
                               <Route path="/" element={<PublicLayout />}>
@@ -154,7 +158,8 @@ function App() {
             </MessagingProvider>
           </ConnectionsProvider>
         </ProfileProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 }

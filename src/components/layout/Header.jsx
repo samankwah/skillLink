@@ -30,7 +30,7 @@ const Header = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="fixed top-0 z-60 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
+    <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm dark:shadow-lg">
       {/* Mobile Header - Full Width */}
       <div className="lg:hidden flex items-center justify-between px-4 py-2 w-full">
         {/* Mobile Menu Button */}
@@ -82,7 +82,7 @@ const Header = ({ onMenuClick }) => {
               <span className="text-[#191961] font-bold text-lg">SL</span>
             </div>
             <span className="font-bold text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#191961]">
-              Skill
+              SkillLink
             </span>
           </Link>
           {/* Placeholder for Gmail-like App Menu (e.g., Grid Icon) - Add if needed */}

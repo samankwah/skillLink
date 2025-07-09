@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useToast } from "../components/ui/Toast";
 import {
   Card,
   CardContent,
@@ -24,6 +25,7 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Skills = () => {
   useDocumentTitle("Skills Discovery");
+  const { success, warning } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");
@@ -148,11 +150,11 @@ const Skills = () => {
 
   const handleAddToMySkills = (skill) => {
     if (mySkills.some(s => s.id === skill.id)) {
-      alert('This skill is already in your profile!');
+      warning('This skill is already in your profile!');
       return;
     }
     setMySkills(prev => [...prev, skill]);
-    alert(`${skill.name} added to your skills profile!`);
+    success(`${skill.name} added to your skills profile!`);
   };
 
   const handleLearnMore = (skill) => {

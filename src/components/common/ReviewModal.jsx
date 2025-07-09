@@ -4,8 +4,10 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Star, X } from 'lucide-react'
 import { useLMS } from '@/context/LMSContext'
+import { useToast } from '../ui/Toast'
 
 const ReviewModal = ({ isOpen, onClose, courseId, courseName }) => {
+  const { success, warning } = useToast()
   const [rating, setRating] = useState(0)
   const [hoverRating, setHoverRating] = useState(0)
   const [comment, setComment] = useState('')
@@ -15,14 +17,14 @@ const ReviewModal = ({ isOpen, onClose, courseId, courseName }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (rating === 0) {
-      alert('Please select a rating')
+      warning('Please select a rating')
       return
     }
 
     setIsSubmitting(true)
     const result = await addReview(courseId, rating, comment)
     if (result.success) {
-      alert('Review submitted successfully!')
+      success('Review submitted successfully!')
       onClose()
       setRating(0)
       setComment('')

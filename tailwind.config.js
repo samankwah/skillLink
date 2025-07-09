@@ -193,6 +193,15 @@ export default {
     "text-[#2d2b69]",
     "bg-[#191961]",
     "bg-[#2d2b69]",
+    // Claude-inspired color classes
+    "bg-claude-dark",
+    "bg-claude-surface",
+    "bg-claude-sidebar",
+    "text-claude-orange",
+    "text-claude-blue",
+    "text-claude-text",
+    "text-claude-muted",
+    "border-claude-border",
     // Gradient and opacity classes
     "bg-white/10",
     "bg-white/20",
@@ -220,6 +229,17 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Claude-inspired colors
+        'claude-dark': '#1a1b1e',
+        'claude-surface': '#2b2d31',
+        'claude-sidebar': '#1e1f22',
+        'claude-orange': '#ff6b35',
+        'claude-blue': '#4f8bf9',
+        'claude-text': '#ffffff',
+        'claude-muted': '#b3b6bc',
+        'claude-border': '#3a3d42',
+        
+        // Existing shadcn colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

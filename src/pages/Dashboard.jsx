@@ -111,11 +111,8 @@ const Dashboard = () => {
 
   const handleContinueLearning = async (courseId) => {
     try {
-      // Continue the course lesson
-      await continueLesson(courseId);
-
       // Navigate to course detail page for learning
-      navigate(`/app/course/${courseId}`);
+      navigate(`/app/courses/${courseId}`);
 
       addNotification({
         type: "success",

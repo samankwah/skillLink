@@ -19,7 +19,7 @@ const navigation = [
   { name: "Dashboard", href: "/app/dashboard", icon: LayoutDashboard },
   { name: "Courses", href: "/app/courses", icon: BookOpen },
   { name: "Certificates", href: "/app/certificates", icon: Award },
-  { name: "Profile", href: "/app/profile", icon: User },
+  // { name: "Profile", href: "/app/profile", icon: User },
   { name: "Skills", href: "/app/skills", icon: Lightbulb },
   { name: "Connections", href: "/app/connections", icon: Users },
   { name: "Messages", href: "/app/messages", icon: MessageCircle },

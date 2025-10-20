@@ -115,8 +115,8 @@ const HeroCarousel = () => {
   const currentSlideData = slides[currentSlide]
 
   return (
-    <section 
-      className="hero-carousel relative min-h-[600px] sm:h-[75vh] lg:h-[80vh] sm:min-h-[650px] overflow-hidden"
+    <section
+      className="hero-carousel relative min-h-[320px] sm:h-[75vh] lg:h-[80vh] sm:min-h-[650px] overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="region"
@@ -146,20 +146,20 @@ const HeroCarousel = () => {
       </div>
 
       {/* Content - Hidden on mobile, visible on desktop */}
-      <div className="relative z-10 h-full flex items-center">
+      <div className="relative z-10 h-full flex items-center py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center justify-center h-full">
             {/* Text Content - Mobile Responsive */}
-            <div className="text-white space-y-4 sm:space-y-6 lg:space-y-8 order-1 lg:order-1 text-center lg:text-left px-4 sm:px-0">
-              <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                <div>
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-medium">
+            <div className="text-white space-y-2 sm:space-y-6 lg:space-y-8 order-1 lg:order-1 text-center lg:text-left px-4 sm:px-0">
+              <div className="space-y-2 sm:space-y-3 lg:space-y-6">
+                <div className="hidden sm:block">
+                  <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-200 font-medium">
                     {currentSlideData.subtitle}
                   </p>
                 </div>
-                
+
                 <div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
+                  <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
                     {currentSlideData.title.split(' ').map((word, index) => (
                       <span
                         key={index}
@@ -171,27 +171,27 @@ const HeroCarousel = () => {
                   </h1>
                 </div>
 
-                <div>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0">
+                <div className="hidden sm:block">
+                  <p className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0">
                     {currentSlideData.description}
                   </p>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 mt-6 sm:mt-8">
+              {/* Action Buttons - Hidden on mobile */}
+              <div className="hidden sm:flex flex-col gap-3 sm:flex-row sm:gap-4 mt-6 sm:mt-8">
                 <Link to="/auth/register" className="w-full sm:w-auto">
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-300 text-[#191961] font-semibold text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
                   >
                     {currentSlideData.ctaText}
                   </Button>
                 </Link>
                 <Link to="/learn" className="w-full sm:w-auto">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
+                  <Button
+                    size="lg"
+                    variant="outline"
                     className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#191961] text-sm sm:text-base lg:text-lg px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 backdrop-blur-sm bg-white/10 hover:bg-white transform hover:scale-105 transition-all duration-300"
                   >
                     <Play className="mr-2 w-3 sm:w-4 lg:w-5 h-3 sm:h-4 lg:h-5" />
@@ -202,9 +202,9 @@ const HeroCarousel = () => {
             </div>
 
             {/* Stats Panel - Mobile Responsive */}
-            <div className="w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none mt-6 lg:mt-0 order-2 lg:order-2 px-4 sm:px-0">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 lg:p-8 border border-white/20 shadow-2xl">
-                <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:gap-6">
+            <div className="w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none mt-4 lg:mt-0 order-2 lg:order-2 px-4 sm:px-0 mb-4">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-6 lg:p-8 border border-white/20 shadow-2xl">
+                <div className="grid grid-cols-1 gap-2 sm:gap-4 lg:gap-6">
                   {currentSlideData.stats.map((stat, index) => {
                     const Icon = stat.icon
                     return (

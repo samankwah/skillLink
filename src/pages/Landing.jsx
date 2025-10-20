@@ -116,7 +116,7 @@ const Landing = () => {
       <HeroCarousel />
 
       {/* Features Section */}
-      <section className="py-24 bg-gray-900 relative overflow-hidden">
+      <section className="py-8 md:py-20 bg-gray-900 relative overflow-hidden">
         {/* Geometric Background Shapes */}
         <div className="absolute inset-0">
           <div className="absolute -top-40 -left-40 w-80 h-80 bg-gray-800 rounded-full opacity-30"></div>
@@ -177,7 +177,7 @@ const Landing = () => {
       {/* Stats Section */}
       <ParallaxSection
         backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=800&fit=crop&auto=format"
-        className="py-24"
+        className="py-8 md:py-20"
         speed={0.2}
         overlayColor="bg-[#191961]/70"
       >
@@ -220,7 +220,7 @@ const Landing = () => {
       </ParallaxSection>
 
       {/* Learning Preview Section */}
-      <section className="py-24 bg-gray-900 relative overflow-hidden">
+      <section className="py-8 md:py-20 bg-gray-900 relative overflow-hidden">
         {/* Geometric Background Shapes */}
         <div className="absolute inset-0">
           <div className="absolute top-0 -right-32 w-64 h-64 bg-gray-800 rounded-full opacity-20"></div>
@@ -343,7 +343,7 @@ const Landing = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-gray-900 relative overflow-hidden">
+      <section className="py-8 md:py-20 bg-gray-900 relative overflow-hidden">
         {/* Geometric Background Shapes */}
         <div className="absolute inset-0">
           <div className="absolute -top-48 left-1/4 w-96 h-96 bg-gray-800 rounded-full opacity-20"></div>
@@ -438,7 +438,7 @@ const Landing = () => {
       {/* CTA Section */}
       <ParallaxSection
         backgroundImage="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&h=800&fit=crop&auto=format"
-        className="py-24"
+        className="py-8 md:py-20"
         speed={0.2}
         overlayColor="bg-gradient-to-r from-[#191961]/95 to-[#2d2b69]/70"
       >
